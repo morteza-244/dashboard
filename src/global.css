@@ -69,8 +69,14 @@
 @layer base {
   * {
     @apply border-border;
+    @apply font-iran-sans;
   }
   body {
+    direction: rtl;
     @apply bg-background text-foreground;
+  }
+  @font-face {
+    font-family: "iran-sans";
+    src: url("/fonts/IRANSans.ttf");
   }
 }
