@@ -8,9 +8,11 @@ import {
 import { getCabins } from "@/services/apiCabins";
 import { useQuery } from "@tanstack/react-query";
 import CabinRow from "./CabinRow";
+import CabinsTableSkeleton from "./CabinsTableSkeleton";
 
 const CabinsTable = () => {
-  const { data: cabins } = useQuery({
+  const skeletons = [1, 2, 3, 5, 6, 7, 8, 9, 10];
+  const { data: cabins, isLoading } = useQuery({
     queryKey: ["cabins"],
     queryFn: getCabins,
   });
@@ -28,6 +30,8 @@ const CabinsTable = () => {
         </TableRow>
       </TableHeader>
       <TableBody>
+        {isLoading &&
+          skeletons.map((skeleton) => <CabinsTableSkeleton key={skeleton} />)}
         {cabins?.map((cabin) => (
           <CabinRow key={cabin.id} cabin={cabin} />
         ))}
