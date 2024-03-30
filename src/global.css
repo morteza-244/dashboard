@@ -66,6 +66,12 @@
   }
 }
 
+@layer utilities {
+  .custom-table-cell {
+    @apply hidden md:table-cell;
+  }
+}
+
 @layer base {
   * {
     @apply border-border;
