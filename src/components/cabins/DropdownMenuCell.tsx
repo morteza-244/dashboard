@@ -5,9 +5,29 @@ import {
   DropdownMenuItem,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
+import { deleteCabin } from "@/services/apiCabins";
+import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { Ellipsis, Eye, Pencil, Trash2 } from "lucide-react";
+import { toast } from "sonner";
 
-const DropdownMenuCell = () => {
+interface DropdownMenuCellProps {
+  cabinId: number;
+}
+
+const DropdownMenuCell = ({ cabinId }: DropdownMenuCellProps) => {
+  const queryClient = useQueryClient();
+  const { mutate } = useMutation({
+    mutationFn: deleteCabin,
+    onSuccess: () => {
+      queryClient.invalidateQueries({
+        queryKey: ["cabins"],
+      });
+      toast("Cabin successfully deleted");
+    },
+    onError: (error) => {
+      toast(error.message);
+    },
+  });
   return (
     <DropdownMenu>
       <DropdownMenuTrigger asChild>
@@ -20,7 +40,10 @@ const DropdownMenuCell = () => {
           <Pencil size={20} />
           ویرایش
         </DropdownMenuItem>
-        <DropdownMenuItem className="justify-between">
+        <DropdownMenuItem
+          className="justify-between"
+          onClick={() => mutate(cabinId)}
+        >
           <Trash2 size={20} />
           حذف
         </DropdownMenuItem>

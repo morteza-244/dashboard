@@ -24,7 +24,7 @@ const CabinRow = ({ cabin }: CabinRowProps) => {
         {cabin.discount + " "}تومان
       </TableCell>
       <TableCell className="text-left">
-        <DropdownMenuCell />
+        <DropdownMenuCell cabinId={cabin.id} />
       </TableCell>
     </TableRow>
   );
