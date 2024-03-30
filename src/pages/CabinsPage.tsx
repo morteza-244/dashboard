@@ -1,9 +1,11 @@
-import React from 'react'
+import { getCabins } from "@/services/apiCabins";
+import React, { useEffect } from "react";
 
 const CabinsPage = () => {
-  return (
-    <div>CabinsPage</div>
-  )
-}
+  useEffect(() => {
+    getCabins().then((data) => console.log(data));
+  });
+  return <div>CabinsPage</div>;
+};
 
-export default CabinsPage
+export default CabinsPage;
