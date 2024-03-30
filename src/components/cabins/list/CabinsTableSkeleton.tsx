@@ -1,6 +1,6 @@
+import { TableRow, TableCell } from "@/components/ui/table";
 import Skeleton from "react-loading-skeleton";
 import "react-loading-skeleton/dist/skeleton.css";
-import { TableCell, TableRow } from "../ui/table";
 
 const CabinsTableSkeleton = () => {
   return (

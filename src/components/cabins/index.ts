@@ -1,1 +1,1 @@
-export { default as CabinsTable } from "./CabinsTable";
+export { default as CabinsTable } from "./list/CabinsTable";

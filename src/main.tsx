@@ -10,7 +10,7 @@ ReactDOM.createRoot(document.getElementById("root")!).render(
   <React.StrictMode>
     <QueryClientProvider>
       <App />
-      <Toaster position="top-center" />
+      <Toaster position="top-center" duration={1000} />
       <ReactQueryDevtools />
     </QueryClientProvider>
   </React.StrictMode>
