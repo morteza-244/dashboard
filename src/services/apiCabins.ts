@@ -47,6 +47,20 @@ export const createCabin = async (newCabin: TNewCabin) => {
   return data;
 };
 
+export const getCabin = async (id: number) => {
+  const { data, error } = await supabase
+    .from("cabins")
+    .select()
+    .eq("id", id)
+    .single();
+
+  if (error) {
+    console.log(error);
+    throw new Error("Cabin not found");
+  }
+  return data;
+};
+
 export const deleteCabin = async (id: number) => {
   const { data, error } = await supabase.from("cabins").delete().eq("id", id);
   if (error) {

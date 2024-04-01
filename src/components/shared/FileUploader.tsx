@@ -7,12 +7,14 @@ interface FileUploaderProps {
   fieldChange: (file: File[]) => void;
   setFileUrl: (value: string) => void;
   fileUrl: string;
+  currentImage?: string;
 }
 
 const FileUploader = ({
   fileUrl,
   setFileUrl,
   fieldChange,
+  currentImage,
 }: FileUploaderProps) => {
   const [file, setFile] = useState<File[]>([]);
 
@@ -45,8 +47,11 @@ const FileUploader = ({
         </div>
       </div>
       <div className="flex flex-col justify-center items-center bg-gray-200 h-52 rounded-xl">
-        {fileUrl ? (
-          <img src={fileUrl} className="h-52 w-full object-cover rounded-xl" />
+        {fileUrl || currentImage ? (
+          <img
+            src={fileUrl || currentImage}
+            className="h-52 w-full object-cover rounded-xl"
+          />
         ) : (
           <img src={fileUploader} />
         )}

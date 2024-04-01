@@ -1,9 +1,7 @@
-import React from 'react'
+import EditCabinForm from "@/components/cabins/edit/EditCabinForm";
 
 const EditCabinPage = () => {
-  return (
-    <div>EditCabinPage</div>
-  )
-}
+  return <EditCabinForm />;
+};
 
-export default EditCabinPage
+export default EditCabinPage;
