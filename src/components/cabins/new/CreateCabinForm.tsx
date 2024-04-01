@@ -1,3 +1,4 @@
+import FileUploader from "@/components/shared/FileUploader";
 import SubmitLoading from "@/components/shared/SubmitLoading";
 import { Button } from "@/components/ui/button";
 import {
@@ -14,16 +15,19 @@ import { createCabin } from "@/services/apiCabins";
 import { TCabinFormData, cabinSchema } from "@/validations/cabinsValidation";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
+import { useState } from "react";
 import { useForm } from "react-hook-form";
 import { toast } from "sonner";
 
 const CreateCabinForm = () => {
   const queryClient = useQueryClient();
+  const [fileUrl, setFileUrl] = useState("");
   const form = useForm<TCabinFormData>({
     resolver: zodResolver(cabinSchema),
     defaultValues: {
       name: "",
       description: "",
+      image: [],
       discount: 0,
       maxCapacity: 0,
       regularPrice: 0,
@@ -37,6 +41,7 @@ const CreateCabinForm = () => {
         queryKey: ["cabins"],
       });
       toast.success("Your cabin has been created successfully");
+      setFileUrl("");
       form.reset();
     },
     onError: (error) => {
@@ -45,7 +50,10 @@ const CreateCabinForm = () => {
   });
 
   const onSubmit = (data: TCabinFormData) => {
-    mutate(data);
+    mutate({
+      ...data,
+      image: data.image[0],
+    });
   };
 
   return (
@@ -114,6 +122,23 @@ const CreateCabinForm = () => {
             )}
           />
         </div>
+        <FormField
+          control={form.control}
+          name="image"
+          render={({ field }) => (
+            <FormItem>
+              <FormLabel>عکس اقامتگاه</FormLabel>
+              <FormControl>
+                <FileUploader
+                  fileUrl={fileUrl}
+                  fieldChange={field.onChange}
+                  setFileUrl={(value) => setFileUrl(value)}
+                />
+              </FormControl>
+              <FormMessage />
+            </FormItem>
+          )}
+        />
         <FormField
           control={form.control}
           name="description"
