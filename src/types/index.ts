@@ -11,7 +11,7 @@ export type TCabin = Database["public"]["Tables"]["cabins"]["Row"];
 export type TNewCabin = {
   description: string | null;
   discount: number | null;
-  image: File | string | null;
+  image: File | null;
   maxCapacity: number | null;
   name: string | null;
   regularPrice: number | null;

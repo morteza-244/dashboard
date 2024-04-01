@@ -25,7 +25,7 @@ export const cabinSchema = z.object({
       message: "حداکثر مبلغ تخفیف 100,000,000 تومان میباشد",
     }),
   description: z.string().min(3, { message: "حداقل 3 کاراکتر وارد کنید" }),
-  image: z.custom<File[] | string>(),
+  image: z.custom<File[]>(),
 });
 
 export type TCabinFormData = z.infer<typeof cabinSchema>;
