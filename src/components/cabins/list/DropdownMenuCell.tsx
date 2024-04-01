@@ -8,6 +8,7 @@ import {
 import { deleteCabin } from "@/services/apiCabins";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { Ellipsis, Eye, Pencil, Trash2 } from "lucide-react";
+import { useNavigate } from "react-router-dom";
 import { toast } from "sonner";
 
 interface DropdownMenuCellProps {
@@ -15,6 +16,7 @@ interface DropdownMenuCellProps {
 }
 
 const DropdownMenuCell = ({ cabinId }: DropdownMenuCellProps) => {
+  const navigate = useNavigate();
   const queryClient = useQueryClient();
   const { mutate } = useMutation({
     mutationFn: deleteCabin,
@@ -36,7 +38,10 @@ const DropdownMenuCell = ({ cabinId }: DropdownMenuCellProps) => {
         </Button>
       </DropdownMenuTrigger>
       <DropdownMenuContent align="start">
-        <DropdownMenuItem className="justify-between">
+        <DropdownMenuItem
+          className="justify-between"
+          onClick={() => navigate(`/cabins/edit/${cabinId}`)}
+        >
           <Pencil size={20} />
           ویرایش
         </DropdownMenuItem>
