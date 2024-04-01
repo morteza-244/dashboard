@@ -22,7 +22,7 @@ const CabinsTable = () => {
 
   return (
     <>
-      <Button onClick={() => navigate("/cabins/new")}>کابین جدید</Button>
+      <Button onClick={() => navigate("/cabins/new")}>افزودن اقامتگاه</Button>
       <Table>
         <TableHeader>
           <TableRow>

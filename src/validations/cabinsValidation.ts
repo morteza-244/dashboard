@@ -1,7 +1,7 @@
 import { z } from "zod";
 
 export const cabinSchema = z.object({
-  cabinName: z
+  name: z
     .string({ required_error: "نام اقامتگاه ضروری میباشد" })
     .min(3, { message: "حداقل 3 کاراکتر وارد کنید" }),
   maxCapacity: z
