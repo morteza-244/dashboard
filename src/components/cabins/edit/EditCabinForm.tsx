@@ -12,7 +12,7 @@ import {
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import useGetCabin from "@/hooks/useGetCabin";
-import { createCabin } from "@/services/apiCabins";
+import { updateCabin } from "@/services/apiCabins";
 import { TCabinFormData, cabinSchema } from "@/validations/cabinsValidation";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
@@ -40,14 +40,15 @@ const EditCabinForm = () => {
   });
 
   const { mutate, isPending } = useMutation({
-    mutationFn: createCabin,
+    mutationFn: updateCabin,
     onSuccess: () => {
       queryClient.invalidateQueries({
         queryKey: ["cabins"],
       });
+      queryClient.invalidateQueries({
+        queryKey: ["cabin-detail", Number(id)],
+      });
       toast.success("Your cabin has been created successfully");
-      setFileUrl("");
-      form.reset();
     },
     onError: (error) => {
       toast.error(error.message);
@@ -57,6 +58,7 @@ const EditCabinForm = () => {
   const onSubmit = (data: TCabinFormData) => {
     mutate({
       ...data,
+      id: Number(id),
       image: data.image[0],
     });
   };
@@ -182,7 +184,7 @@ const EditCabinForm = () => {
               )}
             />
             <Button type="submit" disabled={isPending}>
-              {isPending ? <SubmitLoading /> : "ثبت اقامتگاه"}
+              {isPending ? <SubmitLoading /> : "ویرایش اطلاعات"}
             </Button>
           </form>
         </Form>

@@ -9,6 +9,7 @@ export type SideLinks = {
 
 export type TCabin = Database["public"]["Tables"]["cabins"]["Row"];
 export type TNewCabin = {
+  id?: number;
   description: string | null;
   discount: number | null;
   image: File | null;
