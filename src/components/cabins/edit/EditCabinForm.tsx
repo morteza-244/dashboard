@@ -1,6 +1,5 @@
 import FileUploader from "@/components/shared/FileUploader";
-import SubmitLoading from "@/components/shared/SubmitLoading";
-import { Button } from "@/components/ui/button";
+import SubmitButton from "@/components/shared/SubmitButton";
 import {
   Form,
   FormControl,
@@ -167,9 +166,7 @@ const EditCabinForm = () => {
                 </FormItem>
               )}
             />
-            <Button type="submit" disabled={isPending}>
-              {isPending ? <SubmitLoading /> : "ویرایش اطلاعات"}
-            </Button>
+            <SubmitButton isPending={isPending} cabinId={id} />
           </form>
         </Form>
       )}
