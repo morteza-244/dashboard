@@ -29,3 +29,23 @@ export const cabinSchema = z.object({
 });
 
 export type TCabinFormData = z.infer<typeof cabinSchema>;
+
+export const settingsSchema = z.object({
+  minBookingLength: z.number({
+    required_error: "این فیلد ضروری میباشد",
+    invalid_type_error: "مقدار وارد شده نامعتبر میباشد",
+  }),
+  maxBookingLength: z.number({
+    required_error: "این فیلد ضروری میباشد",
+    invalid_type_error: "مقدار وارد شده نامعتبر میباشد",
+  }),
+  maxGuestsPerBooking: z.number({
+    required_error: "این فیلد ضروری میباشد",
+    invalid_type_error: "مقدار وارد شده نامعتبر میباشد",
+  }),
+  breakfastPrice: z.number({
+    required_error: "این فیلد ضروری میباشد",
+    invalid_type_error: "مقدار وارد شده نامعتبر میباشد",
+  }),
+});
+export type TSettingsFormData = z.infer<typeof settingsSchema>;
