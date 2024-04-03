@@ -1,3 +1,4 @@
+import { Button } from "@/components/ui/button";
 import {
   Form,
   FormControl,
@@ -6,18 +7,16 @@ import {
   FormLabel,
   FormMessage,
 } from "@/components/ui/form";
-import useSettings from "@/hooks/useSettings";
+import { Input } from "@/components/ui/input";
+import { TSetting } from "@/types";
 import {
   settingsSchema,
   TSettingsFormData,
 } from "@/validations/cabinsValidation";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
-import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
 
-const SettingsForm = () => {
-  const { data: settings } = useSettings();
+const SettingsForm = ({ setting }: { setting: TSetting }) => {
   const form = useForm<TSettingsFormData>({
     resolver: zodResolver(settingsSchema),
   });
@@ -40,7 +39,7 @@ const SettingsForm = () => {
                     {...form.register("maxBookingLength", {
                       valueAsNumber: true,
                     })}
-                    defaultValue={settings?.maxBookingLength!}
+                    defaultValue={setting?.maxBookingLength!}
                   />
                 </FormControl>
                 <FormMessage />
@@ -58,7 +57,7 @@ const SettingsForm = () => {
                     {...form.register("minBookingLength", {
                       valueAsNumber: true,
                     })}
-                    defaultValue={settings?.minBookingLength!}
+                    defaultValue={setting?.minBookingLength!}
                   />
                 </FormControl>
                 <FormMessage />
@@ -76,7 +75,7 @@ const SettingsForm = () => {
                     {...form.register("maxGuestsPerBooking", {
                       valueAsNumber: true,
                     })}
-                    defaultValue={settings?.maxGuestsPerBooking!}
+                    defaultValue={setting?.maxGuestsPerBooking!}
                   />
                 </FormControl>
                 <FormMessage />
@@ -94,7 +93,7 @@ const SettingsForm = () => {
                     {...form.register("breakfastPrice", {
                       valueAsNumber: true,
                     })}
-                    defaultValue={settings?.breakfastPrice!}
+                    defaultValue={setting?.breakfastPrice!}
                   />
                 </FormControl>
                 <FormMessage />

@@ -8,6 +8,8 @@ export type SideLinks = {
 };
 
 export type TCabin = Database["public"]["Tables"]["cabins"]["Row"];
+export type TSetting = Database["public"]["Tables"]["settings"]["Row"];
+
 export type TNewCabin = {
   id?: number;
   description: string | null;
