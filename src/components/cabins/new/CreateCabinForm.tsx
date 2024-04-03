@@ -11,16 +11,13 @@ import {
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
-import { createCabin } from "@/services/apiCabins";
+import useCreateCabin from "@/hooks/useCreateCabin";
 import { TCabinFormData, cabinSchema } from "@/validations/cabinsValidation";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { useState } from "react";
 import { useForm } from "react-hook-form";
-import { toast } from "sonner";
 
 const CreateCabinForm = () => {
-  const queryClient = useQueryClient();
   const [fileUrl, setFileUrl] = useState("");
   const form = useForm<TCabinFormData>({
     resolver: zodResolver(cabinSchema),
@@ -34,21 +31,10 @@ const CreateCabinForm = () => {
     },
   });
 
-  const { mutate, isPending } = useMutation({
-    mutationFn: createCabin,
-    onSuccess: () => {
-      queryClient.invalidateQueries({
-        queryKey: ["cabins"],
-      });
-      toast.success("Your cabin has been created successfully");
-      setFileUrl("");
-      form.reset();
-    },
-    onError: (error) => {
-      toast.error(error.message);
-    },
+  const { mutate, isPending } = useCreateCabin({
+    resetFileUrl: () => setFileUrl(""),
+    reset: form.reset,
   });
-
   const onSubmit = (data: TCabinFormData) => {
     mutate({
       ...data,

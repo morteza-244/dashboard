@@ -5,11 +5,9 @@ import {
   DropdownMenuItem,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
-import { deleteCabin } from "@/services/apiCabins";
-import { useMutation, useQueryClient } from "@tanstack/react-query";
+import useDeleteCabin from "@/hooks/useDeleteCabin";
 import { Ellipsis, Eye, Pencil, Trash2 } from "lucide-react";
 import { useNavigate } from "react-router-dom";
-import { toast } from "sonner";
 
 interface DropdownMenuCellProps {
   cabinId: number;
@@ -17,19 +15,8 @@ interface DropdownMenuCellProps {
 
 const DropdownMenuCell = ({ cabinId }: DropdownMenuCellProps) => {
   const navigate = useNavigate();
-  const queryClient = useQueryClient();
-  const { mutate } = useMutation({
-    mutationFn: deleteCabin,
-    onSuccess: () => {
-      queryClient.invalidateQueries({
-        queryKey: ["cabins"],
-      });
-      toast("Cabin successfully deleted");
-    },
-    onError: (error) => {
-      toast(error.message);
-    },
-  });
+  const { mutate } = useDeleteCabin();
+
   return (
     <DropdownMenu>
       <DropdownMenuTrigger asChild>

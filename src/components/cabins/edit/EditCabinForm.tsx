@@ -11,22 +11,22 @@ import {
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
+import useEditCabin from "@/hooks/useEditCabin";
 import useGetCabin from "@/hooks/useGetCabin";
-import { updateCabin } from "@/services/apiCabins";
 import { TCabinFormData, cabinSchema } from "@/validations/cabinsValidation";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import { useParams } from "react-router-dom";
-import { toast } from "sonner";
 import EditCabinFormSkeleton from "./EditCabinFormSkeleton";
 
 const EditCabinForm = () => {
   const { id } = useParams();
-  const { data: cabinData, isLoading } = useGetCabin(Number(id));
-  const queryClient = useQueryClient();
+  const cabinId = Number(id);
+  const { data: cabinData, isLoading } = useGetCabin(cabinId);
+  const { mutate, isPending } = useEditCabin(cabinId);
   const [fileUrl, setFileUrl] = useState("");
+
   const form = useForm<TCabinFormData>({
     resolver: zodResolver(cabinSchema),
     defaultValues: {
@@ -36,22 +36,6 @@ const EditCabinForm = () => {
       discount: cabinData?.discount || 0,
       maxCapacity: cabinData?.maxCapacity || 0,
       regularPrice: cabinData?.regularPrice || 0,
-    },
-  });
-
-  const { mutate, isPending } = useMutation({
-    mutationFn: updateCabin,
-    onSuccess: () => {
-      queryClient.invalidateQueries({
-        queryKey: ["cabins"],
-      });
-      queryClient.invalidateQueries({
-        queryKey: ["cabin-detail", Number(id)],
-      });
-      toast.success("Your cabin has been created successfully");
-    },
-    onError: (error) => {
-      toast.error(error.message);
     },
   });
 
