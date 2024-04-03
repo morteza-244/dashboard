@@ -19,3 +19,10 @@ export type TNewCabin = {
   name: string | null;
   regularPrice: number | null;
 };
+
+export type TNewSetting = {
+  minBookingLength: number;
+  maxBookingLength: number;
+  maxGuestsPerBooking: number;
+  breakfastPrice: number;
+};

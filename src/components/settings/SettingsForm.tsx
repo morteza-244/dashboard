@@ -8,6 +8,7 @@ import {
   FormMessage,
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
+import useEditSettings from "@/hooks/useEditSettings";
 import { TSetting } from "@/types";
 import {
   settingsSchema,
@@ -15,19 +16,21 @@ import {
 } from "@/validations/cabinsValidation";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
+import SubmitLoading from "../shared/SubmitLoading";
 
 const SettingsForm = ({ setting }: { setting: TSetting }) => {
+  const { mutate, isPending } = useEditSettings();
   const form = useForm<TSettingsFormData>({
     resolver: zodResolver(settingsSchema),
   });
 
   const onSubmit = (data: TSettingsFormData) => {
-    console.log(data);
-  };
+    mutate(data);
+s  };
   return (
     <Form {...form}>
       <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8">
-        <div className="grid grid-cols-2 gap-5">
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
           <FormField
             control={form.control}
             name="maxBookingLength"
@@ -101,7 +104,9 @@ const SettingsForm = ({ setting }: { setting: TSetting }) => {
             )}
           />
         </div>
-        <Button type="submit">ثبت تنظیمات</Button>
+        <Button type="submit" disabled={isPending}>
+          {isPending ? <SubmitLoading /> : "ویرایش تنظیمات"}
+        </Button>
       </form>
     </Form>
   );
