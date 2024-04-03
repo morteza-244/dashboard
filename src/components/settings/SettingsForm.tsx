@@ -6,19 +6,22 @@ import {
   FormLabel,
   FormMessage,
 } from "@/components/ui/form";
+import useSettings from "@/hooks/useSettings";
 import {
   settingsSchema,
   TSettingsFormData,
 } from "@/validations/cabinsValidation";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
-import { Input } from "../ui/input";
-import { Button } from "../ui/button";
+import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
 
 const SettingsForm = () => {
+  const { data: settings } = useSettings();
   const form = useForm<TSettingsFormData>({
     resolver: zodResolver(settingsSchema),
   });
+
   const onSubmit = (data: TSettingsFormData) => {
     console.log(data);
   };
@@ -37,6 +40,7 @@ const SettingsForm = () => {
                     {...form.register("maxBookingLength", {
                       valueAsNumber: true,
                     })}
+                    defaultValue={settings?.maxBookingLength!}
                   />
                 </FormControl>
                 <FormMessage />
@@ -54,6 +58,7 @@ const SettingsForm = () => {
                     {...form.register("minBookingLength", {
                       valueAsNumber: true,
                     })}
+                    defaultValue={settings?.minBookingLength!}
                   />
                 </FormControl>
                 <FormMessage />
@@ -71,6 +76,7 @@ const SettingsForm = () => {
                     {...form.register("maxGuestsPerBooking", {
                       valueAsNumber: true,
                     })}
+                    defaultValue={settings?.maxGuestsPerBooking!}
                   />
                 </FormControl>
                 <FormMessage />
@@ -88,6 +94,7 @@ const SettingsForm = () => {
                     {...form.register("breakfastPrice", {
                       valueAsNumber: true,
                     })}
+                    defaultValue={settings?.breakfastPrice!}
                   />
                 </FormControl>
                 <FormMessage />
