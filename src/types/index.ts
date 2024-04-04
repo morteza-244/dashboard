@@ -9,6 +9,7 @@ export type SideLinks = {
 
 export type TCabin = Database["public"]["Tables"]["cabins"]["Row"];
 export type TSetting = Database["public"]["Tables"]["settings"]["Row"];
+export type TBooking = Database["public"]["Tables"]["bookings"]["Row"];
 
 export type TNewCabin = {
   id?: number;
@@ -25,4 +26,12 @@ export type TNewSetting = {
   maxBookingLength: number;
   maxGuestsPerBooking: number;
   breakfastPrice: number;
+};
+
+export type TBookingGuests = {
+  fullName: string | null;
+  email: string | null;
+};
+export type TBookingCabin = {
+  name: string | null;
 };

@@ -7,9 +7,11 @@ import {
   TableRow,
 } from "../ui/table";
 import BookingRow from "./BookingRow";
+import EmptyResource from "../shared/EmptyResource";
 
 const BookingsTable = () => {
   const { data: bookings } = useBookings();
+  if (bookings?.length === 0) return <EmptyResource resourceName="رزروی" />;
   return (
     <Table>
       <TableHeader>
