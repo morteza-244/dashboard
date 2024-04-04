@@ -1,5 +1,4 @@
-import FileUploader from "@/components/shared/FileUploader";
-import SubmitButton from "@/components/shared/SubmitButton";
+import { SubmitButton, FileUploader } from "@/components/shared";
 import {
   Form,
   FormControl,

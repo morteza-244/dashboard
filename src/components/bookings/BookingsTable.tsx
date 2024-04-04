@@ -5,12 +5,14 @@ import {
   TableHead,
   TableHeader,
   TableRow,
-} from "../ui/table";
+} from "@/components/ui/table";
 import BookingRow from "./BookingRow";
-import EmptyResource from "../shared/EmptyResource";
+import BookingsTableSkeleton from "./BookingsTableSkeleton";
+import { EmptyResource } from "@/components/shared";
 
 const BookingsTable = () => {
-  const { data: bookings } = useBookings();
+  const skeletons = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
+  const { data: bookings, isLoading } = useBookings();
   if (bookings?.length === 0) return <EmptyResource resourceName="رزروی" />;
   return (
     <Table>
@@ -25,6 +27,8 @@ const BookingsTable = () => {
         </TableRow>
       </TableHeader>
       <TableBody>
+        {isLoading &&
+          skeletons.map((skeleton) => <BookingsTableSkeleton key={skeleton} />)}
         {bookings?.map((booking) => (
           <BookingRow
             booking={booking}

@@ -1,3 +1,4 @@
+import { SubmitLoading } from "@/components/shared";
 import { Button } from "@/components/ui/button";
 import {
   Form,
@@ -16,7 +17,6 @@ import {
 } from "@/validations/cabinsValidation";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
-import SubmitLoading from "../shared/SubmitLoading";
 
 const SettingsForm = ({ setting }: { setting: TSetting }) => {
   const { mutate, isPending } = useEditSettings();
