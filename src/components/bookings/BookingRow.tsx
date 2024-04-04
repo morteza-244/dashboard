@@ -1,6 +1,12 @@
-import { TBooking, TBookingCabin, TBookingGuests } from "@/types";
-import { TableCell, TableRow } from "../ui/table";
+import {
+  TBooking,
+  TBookingCabin,
+  TBookingGuests,
+  TBookingStatus,
+} from "@/types";
+import { TableCell, TableRow } from "@/components/ui/table";
 import BookingDateCell from "./BookingDateCell";
+import { BookingStatusBadge } from "@/components/shared";
 
 interface BookingRowProps {
   guestsInfo: TBookingGuests;
@@ -13,7 +19,9 @@ const BookingRow = ({ booking, cabin, guestsInfo }: BookingRowProps) => {
     <TableRow className="whitespace-nowrap">
       <TableCell className="space-y-2 lg:space-y-0">
         <p>{cabin.name}</p>
-        <p className="lg:hidden">{booking.status}</p>
+        <div className="lg:hidden">
+          <BookingStatusBadge statusValue={booking.status! as TBookingStatus} />
+        </div>
       </TableCell>
       <TableCell className="space-y-2 hidden lg:table-cell">
         <p>{guestsInfo.fullName}</p>
@@ -25,7 +33,9 @@ const BookingRow = ({ booking, cabin, guestsInfo }: BookingRowProps) => {
           startDate={booking.startDate!}
         />
       </TableCell>
-      <TableCell className="hidden lg:table-cell">{booking.status}</TableCell>
+      <TableCell className="hidden lg:table-cell">
+        <BookingStatusBadge statusValue={booking.status! as TBookingStatus} />
+      </TableCell>
       <TableCell className="hidden lg:table-cell">
         {booking.totalPrice}
       </TableCell>
