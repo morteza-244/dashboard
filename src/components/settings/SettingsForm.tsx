@@ -26,7 +26,7 @@ const SettingsForm = ({ setting }: { setting: TSetting }) => {
 
   const onSubmit = (data: TSettingsFormData) => {
     mutate(data);
-s  };
+  };
   return (
     <Form {...form}>
       <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8">
