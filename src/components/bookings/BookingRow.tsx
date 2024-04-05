@@ -1,12 +1,12 @@
+import { BookingStatusBadge } from "@/components/shared";
+import { TableCell, TableRow } from "@/components/ui/table";
 import {
   TBooking,
   TBookingCabin,
   TBookingGuests,
-  TBookingStatus,
+  TStatus
 } from "@/types";
-import { TableCell, TableRow } from "@/components/ui/table";
 import BookingDateCell from "./BookingDateCell";
-import { BookingStatusBadge } from "@/components/shared";
 
 interface BookingRowProps {
   guestsInfo: TBookingGuests;
@@ -20,7 +20,7 @@ const BookingRow = ({ booking, cabin, guestsInfo }: BookingRowProps) => {
       <TableCell className="space-y-2 lg:space-y-0">
         <p>{cabin.name}</p>
         <div className="lg:hidden">
-          <BookingStatusBadge statusValue={booking.status! as TBookingStatus} />
+          <BookingStatusBadge statusValue={booking.status! as TStatus} />
         </div>
       </TableCell>
       <TableCell className="space-y-2 hidden lg:table-cell">
@@ -34,7 +34,7 @@ const BookingRow = ({ booking, cabin, guestsInfo }: BookingRowProps) => {
         />
       </TableCell>
       <TableCell className="hidden lg:table-cell">
-        <BookingStatusBadge statusValue={booking.status! as TBookingStatus} />
+        <BookingStatusBadge statusValue={booking.status! as TStatus} />
       </TableCell>
       <TableCell className="hidden lg:table-cell">
         {booking.totalPrice}

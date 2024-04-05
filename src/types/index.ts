@@ -36,3 +36,5 @@ export type TBookingCabin = {
   name: string | null;
 };
 export type TBookingStatus = "CHECKED_IN" | "CHECKED_OUT" | "UNCONFIRMED";
+
+export type TStatus = "checked_in" | "checked_out" | "unconfirmed";

@@ -1,23 +1,33 @@
 import {
-    Select,
-    SelectContent,
-    SelectGroup,
-    SelectItem,
-    SelectTrigger,
-    SelectValue
+  Select,
+  SelectContent,
+  SelectGroup,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
 } from "@/components/ui/select";
+import useBookingStore from "@/store/bookingStore";
 
 const StatusSelector = () => {
-  const status = [
+  const { bookingStatus, setStatus } = useBookingStore();
+  const status: { value: string; label: string }[] = [
     { value: "all", label: "تمامی رزرو ها" },
     { value: "unconfirmed", label: "پرداخت نشده" },
-    { value: "check_in", label: "در حال پرداخت" },
-    { value: "checkout", label: "پرداخت شده" },
+    { value: "checked_in", label: "در حال پرداخت" },
+    { value: "checked_out", label: "پرداخت شده" },
   ];
+  const currentValue = status.find(
+    (item) => item.value === bookingStatus
+  )?.label;
+
   return (
-    <Select>
-      <SelectTrigger className="w-[180px] flex-row-reverse">
-        <SelectValue placeholder="وضعیت رزرو ها" />
+    <Select
+      onValueChange={(value) => {
+        setStatus(value);
+      }}
+    >
+      <SelectTrigger className="w-[180px] flex-row-reverse bg-slate-50 dark:bg-inherit">
+        <SelectValue placeholder={currentValue} />
       </SelectTrigger>
       <SelectContent>
         <SelectGroup className="justify-end">

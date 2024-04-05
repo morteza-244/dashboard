@@ -20,6 +20,7 @@
     "@supabase/supabase-js": "^2.41.1",
     "@tanstack/react-query": "^5.28.9",
     "@tanstack/react-query-devtools": "^5.28.10",
+    "axios": "^1.6.8",
     "class-variance-authority": "^0.7.0",
     "clsx": "^2.1.0",
     "date-fns-jalali": "^3.6.0-0",
@@ -36,7 +37,8 @@
     "supabase": "^1.151.1",
     "tailwind-merge": "^2.2.2",
     "tailwindcss-animate": "^1.0.7",
-    "zod": "^3.22.4"
+    "zod": "^3.22.4",
+    "zustand": "^4.5.2"
   },
   "devDependencies": {
     "@tanstack/eslint-plugin-query": "^5.28.6",
