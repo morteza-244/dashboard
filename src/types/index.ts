@@ -42,4 +42,5 @@ export type TStatus = "checked_in" | "checked_out" | "unconfirmed";
 export type TBookingQuery = {
   status: string;
   order: string;
+  sortType: boolean;
 };

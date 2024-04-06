@@ -7,25 +7,27 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 import useBookingStore from "@/store/bookingStore";
-
-const BookingSortSelector = () => {
-  const sortValue = useBookingStore((s) => s.bookingQuery.order);
-  const setSortValue = useBookingStore((s) => s.setSortValue);
-  const orders: { value: string; label: string }[] = [
-    { value: "startDate", label: "تاریخ" },
-    { value: "totalPrice", label: "قیمت" },
+const SortTypeSelector = () => {
+  const sortType = useBookingStore((s) => s.bookingQuery.sortType);
+  const setSortType = useBookingStore((s) => s.setSortType);
+  const sortTypes = [
+    { label: "صعودی", value: "asc", statusType: true },
+    { label: "نزولی", value: "desc", statusType: false },
   ];
-  const currentValue = orders.find((order) => order.value === sortValue)?.label;
+  const currentValue = sortTypes.find(
+    (item) => item.statusType === sortType
+  )?.label;
 
   return (
     <Select
       onValueChange={(value) => {
-        setSortValue(value);
+        const sortTypeValue =
+          value === "asc" ? true : value === "desc" ? false : sortType;
+        setSortType(sortTypeValue);
       }}
     >
       <div className="flex items-center gap-3">
-        <span className="text-[14px] sm:text-[16px] whitespace-nowrap">مرتب سازی</span>
-        <SelectTrigger className="w-48 flex-row-reverse bg-slate-50 dark:bg-inherit">
+        <SelectTrigger className="w-24 flex-row-reverse bg-slate-50 dark:bg-inherit">
           <SelectValue
             placeholder={currentValue || "یک گزینه را انتخاب کنید"}
           />
@@ -33,7 +35,7 @@ const BookingSortSelector = () => {
       </div>
       <SelectContent>
         <SelectGroup className="justify-end">
-          {orders.map((order) => (
+          {sortTypes.map((order) => (
             <SelectItem
               key={order.value}
               value={order.value}
@@ -48,4 +50,4 @@ const BookingSortSelector = () => {
   );
 };
 
-export default BookingSortSelector;
+export default SortTypeSelector;

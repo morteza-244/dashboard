@@ -9,7 +9,9 @@ export const getBookings = async (bookingQuery: TBookingQuery) => {
     query = query.eq("status", bookingQuery.status);
   }
   if (bookingQuery.order) {
-    query = query.order(bookingQuery.order, { ascending: false });
+    query = query.order(bookingQuery.order, {
+      ascending: bookingQuery.sortType,
+    });
   }
   const { data, error } = await query;
   if (error) {
