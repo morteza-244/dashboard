@@ -9,7 +9,8 @@ import {
 import useBookingStore from "@/store/bookingStore";
 
 const StatusSelector = () => {
-  const { bookingStatus, setStatus } = useBookingStore();
+  const bookingStatus = useBookingStore((s) => s.bookingQuery.status);
+  const setStatus = useBookingStore((s) => s.setStatus);
   const status: { value: string; label: string }[] = [
     { value: "all", label: "تمامی رزرو ها" },
     { value: "unconfirmed", label: "پرداخت نشده" },

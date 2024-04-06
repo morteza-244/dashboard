@@ -9,8 +9,8 @@ import {
 import useBookingStore from "@/store/bookingStore";
 
 const BookingSortSelector = () => {
+  const sortValue = useBookingStore((s) => s.bookingQuery.order);
   const setSortValue = useBookingStore((s) => s.setSortValue);
-  const sortValue = useBookingStore((s) => s.sortValue);
   const orders: { value: string; label: string }[] = [
     { value: "startDate", label: "تاریخ" },
     { value: "totalPrice", label: "قیمت" },

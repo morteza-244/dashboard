@@ -17,12 +17,12 @@ const BookingsTable = () => {
   return (
     <Table>
       <TableHeader>
-        <TableRow>
+        <TableRow className="whitespace-nowrap">
           <TableHead>اقامتگاه</TableHead>
-          <TableHead className="hidden lg:table-cell">مهمان</TableHead>
+          <TableHead>مهمان</TableHead>
           <TableHead>تاریخ</TableHead>
-          <TableHead className="hidden lg:table-cell">وضعیت</TableHead>
-          <TableHead className="hidden lg:table-cell">پرداختی ها</TableHead>
+          <TableHead>وضعیت</TableHead>
+          <TableHead>پرداختی ها</TableHead>
           <TableHead className="text-left"></TableHead>
         </TableRow>
       </TableHeader>

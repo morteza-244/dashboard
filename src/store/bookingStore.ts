@@ -1,15 +1,21 @@
+import { TBookingQuery } from "@/types";
 import { create } from "zustand";
 type TBookingStore = {
-  bookingStatus: string;
-  sortValue: string;
+  bookingQuery: TBookingQuery;
   setStatus: (value: string) => void;
   setSortValue: (value: string) => void;
 };
 
 const useBookingStore = create<TBookingStore>((set) => ({
-  bookingStatus: "all",
-  sortValue: "",
-  setStatus: (value) => set(() => ({ bookingStatus: value })),
-  setSortValue: (value) => set(() => ({ sortValue: value })),
+  bookingQuery: {
+    order: "",
+    status: "all",
+  },
+  setStatus: (value) =>
+    set((store) => ({
+      bookingQuery: { ...store.bookingQuery, status: value },
+    })),
+  setSortValue: (value) =>
+    set((store) => ({ bookingQuery: { ...store.bookingQuery, order: value } })),
 }));
 export default useBookingStore;
