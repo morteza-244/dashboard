@@ -3,6 +3,7 @@ import { SkeletonTheme } from "@/components/shared";
 import { MainLayout } from "@/layouts";
 import {
   AccountPage,
+  BookingDetailPage,
   BookingsPage,
   CabinsPage,
   CreateCabinsPage,
@@ -25,6 +26,7 @@ const App = () => {
               <Route index element={<DashboardPage />} />
               <Route path="/account" element={<AccountPage />} />
               <Route path="/bookings" element={<BookingsPage />} />
+              <Route path="/bookings/:id" element={<BookingDetailPage />} />
               <Route path="/cabins" element={<CabinsPage />} />
               <Route path="/cabins/new" element={<CreateCabinsPage />} />
               <Route path="/cabins/edit/:id" element={<EditCabinPage />} />

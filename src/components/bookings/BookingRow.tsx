@@ -2,6 +2,7 @@ import { BookingStatusBadge } from "@/components/shared";
 import { TableCell, TableRow } from "@/components/ui/table";
 import { TBooking, TBookingCabin, TBookingGuests, TStatus } from "@/types";
 import BookingDateCell from "./BookingDateCell";
+import { useNavigate } from "react-router-dom";
 
 interface BookingRowProps {
   guestsInfo: TBookingGuests;
@@ -10,10 +11,11 @@ interface BookingRowProps {
 }
 
 const BookingRow = ({ booking, cabin, guestsInfo }: BookingRowProps) => {
+  const navigate = useNavigate();
   return (
     <TableRow className="whitespace-nowrap">
-      <TableCell>
-      {cabin.name}
+      <TableCell onClick={() => navigate(`/bookings/${booking.id}`)}>
+        {cabin.name}
       </TableCell>
       <TableCell className="space-y-2">
         <p>{guestsInfo.fullName}</p>
