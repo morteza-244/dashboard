@@ -1,16 +1,15 @@
-import useBookings from "@/hooks/useBookings";
+import { EmptyResource } from "@/components/shared";
 import {
   Table,
   TableBody,
-  TableFooter,
   TableHead,
   TableHeader,
-  TableRow,
+  TableRow
 } from "@/components/ui/table";
+import useBookings from "@/hooks/useBookings";
+import PaginateButton from "../shared/PaginateButton";
 import BookingRow from "./BookingRow";
 import BookingsTableSkeleton from "./BookingsTableSkeleton";
-import { EmptyResource } from "@/components/shared";
-import PaginateButton from "../shared/PaginateButton";
 
 const BookingsTable = () => {
   const skeletons = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
@@ -43,7 +42,7 @@ const BookingsTable = () => {
           ))}
         </TableBody>
       </Table>
-      <PaginateButton currentPage={1} itemCount={50} pageSize={10} />
+      <PaginateButton itemCount={50} pageSize={10} />
     </>
   );
 };
