@@ -4,7 +4,7 @@ import {
   TableBody,
   TableHead,
   TableHeader,
-  TableRow
+  TableRow,
 } from "@/components/ui/table";
 import useBookings from "@/hooks/useBookings";
 import PaginateButton from "../shared/PaginateButton";
@@ -13,8 +13,9 @@ import BookingsTableSkeleton from "./BookingsTableSkeleton";
 
 const BookingsTable = () => {
   const skeletons = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
-  const { data: bookings, isLoading } = useBookings();
-  if (bookings?.length === 0) return <EmptyResource resourceName="رزروی" />;
+  const { data: bookings, isLoading, isPlaceholderData } = useBookings();
+  if (bookings?.data.length === 0)
+    return <EmptyResource resourceName="رزروی" />;
   return (
     <>
       <Table>
@@ -33,7 +34,7 @@ const BookingsTable = () => {
             skeletons.map((skeleton) => (
               <BookingsTableSkeleton key={skeleton} />
             ))}
-          {bookings?.map((booking) => (
+          {bookings?.data.map((booking) => (
             <BookingRow
               booking={booking}
               cabin={booking.cabins!}
@@ -42,7 +43,11 @@ const BookingsTable = () => {
           ))}
         </TableBody>
       </Table>
-      <PaginateButton itemCount={50} pageSize={10} />
+      <PaginateButton
+        itemCount={bookings?.count!}
+        hasMore={bookings?.count!}
+        isPlaceholderData={isPlaceholderData}
+      />
     </>
   );
 };

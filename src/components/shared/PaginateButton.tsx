@@ -1,28 +1,33 @@
 import { Button } from "@/components/ui/button";
-import {
-  ChevronLeft,
-  ChevronRight
-} from "lucide-react";
+import { PAGE_SIZE } from "@/constants";
+import { ChevronLeft, ChevronRight } from "lucide-react";
 import { useSearchParams } from "react-router-dom";
 
 interface PaginateButtonProps {
-  pageSize: number;
   itemCount: number;
+  hasMore: Number;
+  isPlaceholderData: boolean;
 }
 
-const PaginateButton = ({ pageSize, itemCount }: PaginateButtonProps) => {
+const PaginateButton = ({
+  itemCount,
+  hasMore,
+  isPlaceholderData,
+}: PaginateButtonProps) => {
   const [searchParams, setSearchParams] = useSearchParams();
   const currentPage = !searchParams.get("page")
     ? 1
     : Number(searchParams.get("page"));
 
-  const pageCount = Math.ceil(itemCount / pageSize);
+  const pageCount = Math.ceil(itemCount / PAGE_SIZE);
   if (pageCount <= 1) return null;
 
   const nextPage = () => {
-    const next = currentPage === pageCount ? currentPage : currentPage + 1;
-    searchParams.set("page", String(next));
-    setSearchParams(searchParams);
+    if (!isPlaceholderData && hasMore) {
+      const next = currentPage + 1;
+      searchParams.set("page", String(next));
+      setSearchParams(searchParams);
+    }
   };
 
   const prevPage = () => {
@@ -37,7 +42,10 @@ const PaginateButton = ({ pageSize, itemCount }: PaginateButtonProps) => {
         صفحه {currentPage} از {pageCount}
       </p>
       <div className="flex gap-2">
-        <Button disabled={currentPage === pageCount} onClick={nextPage}>
+        <Button
+          disabled={isPlaceholderData || currentPage === pageCount}
+          onClick={nextPage}
+        >
           <ChevronRight size={20} />
           صفحه بعدی
         </Button>

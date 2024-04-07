@@ -12,7 +12,6 @@ const useBookingStore = create<TBookingStore>((set) => ({
     order: "",
     status: "all",
     sortType: true,
-    searchText: "",
   },
   setStatus: (value) =>
     set((store) => ({
