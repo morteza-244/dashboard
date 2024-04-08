@@ -1,4 +1,4 @@
-import { Bookings } from "@/components/bookings";
+import { Bookings } from "@/components/bookings/list";
 
 const BookingsPage = () => {
   return <Bookings />;

@@ -5,7 +5,7 @@ import {
   DropdownMenuItem,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
-import { Ellipsis, Eye } from "lucide-react";
+import { Ellipsis, Eye, Pencil } from "lucide-react";
 import { useNavigate } from "react-router-dom";
 
 interface BookingDropdownMenuCellProps {
@@ -30,6 +30,13 @@ const BookingDropdownMenuCell = ({
         >
           <Eye size={20} />
           مشاهده
+        </DropdownMenuItem>
+        <DropdownMenuItem
+          className="justify-between"
+          onClick={() => navigate(`/checkIn/${bookingId}`)}
+        >
+          <Pencil size={20} />
+          ویرایش
         </DropdownMenuItem>
       </DropdownMenuContent>
     </DropdownMenu>

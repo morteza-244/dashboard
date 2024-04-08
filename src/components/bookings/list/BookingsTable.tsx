@@ -7,7 +7,7 @@ import {
   TableRow,
 } from "@/components/ui/table";
 import useBookings from "@/hooks/useBookings";
-import PaginateButton from "../shared/PaginateButton";
+import PaginateButton from "@/components/shared/PaginateButton";
 import BookingRow from "./BookingRow";
 import BookingsTableSkeleton from "./BookingsTableSkeleton";
 

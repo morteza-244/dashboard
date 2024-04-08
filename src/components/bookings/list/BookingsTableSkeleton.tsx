@@ -1,5 +1,5 @@
 import Skeleton from "react-loading-skeleton";
-import { TableCell, TableRow } from "../ui/table";
+import { TableCell, TableRow } from "@/components/ui/table";
 
 const BookingsTableSkeleton = () => {
   return (

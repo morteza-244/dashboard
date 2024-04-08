@@ -6,6 +6,7 @@ import {
   BookingDetailPage,
   BookingsPage,
   CabinsPage,
+  CheckInPage,
   CreateCabinsPage,
   DashboardPage,
   EditCabinPage,
@@ -27,6 +28,7 @@ const App = () => {
               <Route path="/account" element={<AccountPage />} />
               <Route path="/bookings" element={<BookingsPage />} />
               <Route path="/bookings/:id" element={<BookingDetailPage />} />
+              <Route path="/checkIn/:id" element={<CheckInPage />} />
               <Route path="/cabins" element={<CabinsPage />} />
               <Route path="/cabins/new" element={<CreateCabinsPage />} />
               <Route path="/cabins/edit/:id" element={<EditCabinPage />} />
