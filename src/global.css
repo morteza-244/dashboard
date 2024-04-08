@@ -53,6 +53,18 @@
   .custom-table-cell {
     @apply hidden md:table-cell;
   }
+  .success-badge {
+    @apply bg-green-100 text-green-800 dark:bg-green-800 dark:text-green-100;
+  }
+  .inProgress-badge {
+    @apply bg-yellow-100 text-yellow-800 dark:bg-yellow-800 dark:text-yellow-100;
+  }
+  .unconfirmed-badge {
+    @apply bg-gray-300 text-gray-800 dark:bg-gray-700 dark:text-gray-200;
+  }
+  .booking-card {
+    @apply overflow-hidden rounded-lg shadow-lg bg-slate-100 dark:bg-gradient-to-br dark:from-teal-700 dark:to-teal-900;
+  }
 }
 
 @layer base {

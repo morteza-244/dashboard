@@ -6,13 +6,21 @@ interface BookingStatusBadgeProps {
 
 const BookingStatusBadge = ({ statusValue }: BookingStatusBadgeProps) => {
   const status: Record<TStatus, { label: string; color: string }> = {
-    checked_in: { label: "CHECKED_IN", color: "text-emerald-400" },
-    checked_out: { label: "CHECKED_OUT", color: "text-gray-400" },
-    unconfirmed: { label: "UNCONFIRMED", color: "text-blue-500" },
+    checked_in: {
+      label: "در حال بررسی",
+      color: "inProgress-badge",
+    },
+    checked_out: {
+      label: "تحویل داده شد",
+      color: "success-badge",
+    },
+    unconfirmed: { label: "تایید نشد", color: "unconfirmed-badge" },
   };
 
   return (
-    <span className={status[statusValue].color}>
+    <span
+      className={`inline-flex items-center px-3 py-1 rounded text-xs ${status[statusValue].color}`}
+    >
       {status[statusValue].label}
     </span>
   );

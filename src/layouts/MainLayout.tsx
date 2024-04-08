@@ -7,7 +7,7 @@ const MainLayout = () => {
     <div className="flex h-screen overflow-hidden container p-0 mx-auto">
       <SideBar />
       {/* Main Content */}
-      <main className="flex-1 overflow-x-hidden overflow-y-auto bg-gray-100 dark:bg-inherit">
+      <main className="flex-1 overflow-x-hidden overflow-y-auto dark:bg-inherit">
         {/* Sticky Header */}
         <header className="sticky top-0 bg-white dark:bg-slate-950 shadow-md p-4 z-50">
           <ModeToggle />

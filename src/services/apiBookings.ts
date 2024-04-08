@@ -29,3 +29,17 @@ export const getBookings = async (
   }
   return { data, count };
 };
+
+export const getBooking = async (id: number) => {
+  const { data, error } = await supabase
+    .from("bookings")
+    .select("*, cabins(*), guests(*)")
+    .eq("id", id)
+    .single();
+
+  if (error) {
+    console.log(error);
+    throw new Error("رزرو مورد نظر یافت نشد.");
+  }
+  return data;
+};
