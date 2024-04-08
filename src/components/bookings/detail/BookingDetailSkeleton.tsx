@@ -2,7 +2,7 @@ import Skeleton from "react-loading-skeleton";
 
 const BookingDetailSkeleton = () => {
   return (
-    <section className="space-y-8">
+    <>
       <div className="flex items-center justify-between">
         <Skeleton className="w-36 h-5" />
         <Skeleton className="w-14 h-5" />
@@ -35,7 +35,7 @@ const BookingDetailSkeleton = () => {
           </div>
         </div>
       </div>
-    </section>
+    </>
   );
 };
 

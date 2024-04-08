@@ -25,7 +25,7 @@ const BookingDetailCard = ({
   const extrasPrice = formatCurrency(booking.extrasPrice!);
 
   return (
-    <section className="space-y-8">
+    <>
       <div className="flex items-center justify-between">
         <div className="flex gap-2 items-center text-2xl font-bold">
           <h3>رزرو</h3>
@@ -89,7 +89,7 @@ const BookingDetailCard = ({
           </p>
         </div>
       </div>
-    </section>
+    </>
   );
 };
 

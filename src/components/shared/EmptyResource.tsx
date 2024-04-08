@@ -10,7 +10,7 @@ const EmptyResource = ({ resourceName }: { resourceName: string }) => {
       </div>
       <div className="flex gap-1">
         <AlertDescription className="text-lg">
-          هیچ {resourceName} یافت نشد
+          {resourceName} یافت نشد
         </AlertDescription>
         <Frown />
       </div>
