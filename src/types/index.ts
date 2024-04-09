@@ -34,8 +34,12 @@ export type TBookingGuests = {
 };
 
 export type TCheckInObject = {
-  status: TStatus;
-  isPaid: boolean;
+  id: number;
+  isPaid?: boolean;
+  status?: TStatus;
+  hasBreakfast?: boolean;
+  extrasPrice?: number;
+  totalPrice?: number;
 };
 
 export type TBookingCabin = {

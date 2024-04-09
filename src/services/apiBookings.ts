@@ -44,14 +44,11 @@ export const getBooking = async (id: number) => {
   return data;
 };
 
-export const updateBooking = async (
-  id: number,
-  updatedBooking: TCheckInObject
-) => {
+export const updateBooking = async (updatedBooking: TCheckInObject) => {
   const { data, error } = await supabase
     .from("bookings")
     .update(updatedBooking)
-    .eq("id", id)
+    .eq("id", updatedBooking.id)
     .select()
     .single();
 

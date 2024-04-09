@@ -21,7 +21,7 @@ const CheckIn = () => {
             cabinName={cabinName}
             guests={guests}
           />
-          <CheckInFooter bookingId={booking?.id!} fullName={guests.fullName} />
+          <CheckInFooter fullName={guests.fullName} booking={booking!} />
         </>
       )}
     </div>
