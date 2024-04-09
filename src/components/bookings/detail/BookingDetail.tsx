@@ -2,6 +2,8 @@ import useGetBooking from "@/hooks/useGetBooking";
 import BookingDetailCard from "./BookingDetailCard";
 import BookingDetailSkeleton from "./BookingDetailSkeleton";
 import { EmptyResource } from "@/components/shared";
+import CheckInButton from "./CheckInButton";
+import { TStatus } from "@/types";
 
 const BookingDetail = () => {
   const { data: booking, isLoading, error } = useGetBooking();
@@ -16,14 +18,20 @@ const BookingDetail = () => {
       {isLoading ? (
         <BookingDetailSkeleton />
       ) : (
-        <BookingDetailCard
-          booking={booking!}
-          cabinName={cabinName}
-          guests={{
-            email,
-            fullName,
-          }}
-        />
+        <>
+          <BookingDetailCard
+            booking={booking!}
+            cabinName={cabinName}
+            guests={{
+              email,
+              fullName,
+            }}
+          />
+          <CheckInButton
+            bookingId={booking?.id!}
+            bookingStatus={booking?.status as TStatus}
+          />
+        </>
       )}
     </section>
   );

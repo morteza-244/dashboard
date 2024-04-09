@@ -1,9 +1,7 @@
-import React from 'react'
+import { CheckIn } from "@/components/bookings/edit";
 
 const CheckInPage = () => {
-  return (
-    <div>CheckInPage</div>
-  )
-}
+  return <CheckIn />;
+};
 
-export default CheckInPage
+export default CheckInPage;

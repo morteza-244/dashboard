@@ -29,7 +29,10 @@ const BookingRow = ({ booking, cabin, guestsInfo }: BookingRowProps) => {
       </TableCell>
       <TableCell>{booking.totalPrice}</TableCell>
       <TableCell>
-        <BookingDropdownMenuCell bookingId={booking.id} />
+        <BookingDropdownMenuCell
+          bookingId={booking.id}
+          bookingStatus={booking.status as TStatus}
+        />
       </TableCell>
     </TableRow>
   );

@@ -82,15 +82,6 @@ const BookingDetailCard = ({
                 {booking.isPaid ? "پرداخت شد" : "در محل اقامتگاه پرداخت میشود"}
               </span>
             </div>
-            {booking.status === "unconfirmed" && (
-              <Button
-                size={"sm"}
-                variant={theme === "dark" ? "outline" : "default"}
-                onClick={() => navigate(`/checkIn/${booking.id}`)}
-              >
-                ویرایش اطلاعات
-              </Button>
-            )}
           </div>
           <p className="text-center mt-4 text-[14px] md:text-[16px] text-muted-foreground">
             رزرو شده در تاریخ{" "}

@@ -5,15 +5,18 @@ import {
   DropdownMenuItem,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
+import { TStatus } from "@/types";
 import { Ellipsis, Eye, Pencil } from "lucide-react";
 import { useNavigate } from "react-router-dom";
 
 interface BookingDropdownMenuCellProps {
   bookingId: number;
+  bookingStatus: TStatus;
 }
 
 const BookingDropdownMenuCell = ({
   bookingId,
+  bookingStatus,
 }: BookingDropdownMenuCellProps) => {
   const navigate = useNavigate();
   return (
@@ -31,13 +34,15 @@ const BookingDropdownMenuCell = ({
           <Eye size={20} />
           مشاهده
         </DropdownMenuItem>
-        <DropdownMenuItem
-          className="justify-between"
-          onClick={() => navigate(`/checkIn/${bookingId}`)}
-        >
-          <Pencil size={20} />
-          ویرایش
-        </DropdownMenuItem>
+        {bookingStatus === "unconfirmed" && (
+          <DropdownMenuItem
+            className="justify-between"
+            onClick={() => navigate(`/checkIn/${bookingId}`)}
+          >
+            <Pencil size={20} />
+            ویرایش
+          </DropdownMenuItem>
+        )}
       </DropdownMenuContent>
     </DropdownMenu>
   );

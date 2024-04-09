@@ -1,6 +1,6 @@
-import { TBookingQuery } from "@/types";
-import supabase from "./supabase";
 import { PAGE_SIZE } from "@/constants";
+import { TBookingQuery, TCheckInObject } from "@/types";
+import supabase from "./supabase";
 
 export const getBookings = async (
   bookingQuery: TBookingQuery,
@@ -40,6 +40,24 @@ export const getBooking = async (id: number) => {
   if (error) {
     console.log(error);
     throw new Error("رزرو مورد نظر یافت نشد.");
+  }
+  return data;
+};
+
+export const updateBooking = async (
+  id: number,
+  updatedBooking: TCheckInObject
+) => {
+  const { data, error } = await supabase
+    .from("bookings")
+    .update(updatedBooking)
+    .eq("id", id)
+    .select()
+    .single();
+
+  if (error) {
+    console.log(error);
+    throw new Error("رزرو مورد نظر اپدیت نشده است. لطفا دوباره تلاش کنید");
   }
   return data;
 };
