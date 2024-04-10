@@ -29,7 +29,7 @@ const CheckInButton = ({ bookingStatus, bookingId }: CheckInButtonProps) => {
           onClick={() => navigate(`/checkIn/${bookingId}`)}
         >
           ویرایش اطلاعات
-          <Pencil size={17} className="mr-1"/>
+          <Pencil size={17} className="mr-1" />
         </Button>
       )}
       {bookingStatus === "checked_in" && (
@@ -45,7 +45,7 @@ const CheckInButton = ({ bookingStatus, bookingId }: CheckInButtonProps) => {
           {isPending ? <SubmitLoading /> : "تسویه شود"}
         </Button>
       )}
-      <Button onClick={onClose}>
+      <Button onClick={onClose} disabled={isPending}>
         حذف رزرو <Trash2 size={20} className="mr-1" />
       </Button>
       <DeleteModal open={open} onClose={onClose} bookingId={bookingId} />
