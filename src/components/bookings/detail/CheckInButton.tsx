@@ -1,8 +1,11 @@
 import { SubmitLoading } from "@/components/shared";
+import DeleteModal from "@/components/shared/DeleteModal";
 import { useTheme } from "@/components/ThemeProvider";
 import { Button } from "@/components/ui/button";
 import useCheckOutBooking from "@/hooks/useCheckOutBooking";
 import { TStatus } from "@/types";
+import { Trash2 } from "lucide-react";
+import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
 interface CheckInButtonProps {
@@ -14,8 +17,12 @@ const CheckInButton = ({ bookingStatus, bookingId }: CheckInButtonProps) => {
   const { theme } = useTheme();
   const navigate = useNavigate();
   const { mutate, isPending } = useCheckOutBooking();
+  const [open, setOpen] = useState(false);
+  const onClose = () => {
+    setOpen(!open);
+  };
   return (
-    <>
+    <div className="flex gap-3 flex-wrap">
       {bookingStatus === "unconfirmed" && (
         <Button
           size={"sm"}
@@ -38,7 +45,11 @@ const CheckInButton = ({ bookingStatus, bookingId }: CheckInButtonProps) => {
           {isPending ? <SubmitLoading /> : "تسویه شود"}
         </Button>
       )}
-    </>
+      <Button onClick={onClose}>
+        حذف رزرو <Trash2 size={20} className="mr-1" />
+      </Button>
+      <DeleteModal open={open} onClose={onClose} bookingId={bookingId} />
+    </div>
   );
 };
 

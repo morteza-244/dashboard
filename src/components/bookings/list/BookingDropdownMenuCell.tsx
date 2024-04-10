@@ -1,3 +1,4 @@
+import DeleteModal from "@/components/shared/DeleteModal";
 import { Button } from "@/components/ui/button";
 import {
   DropdownMenu,
@@ -7,7 +8,8 @@ import {
 } from "@/components/ui/dropdown-menu";
 import useCheckOutBooking from "@/hooks/useCheckOutBooking";
 import { TStatus } from "@/types";
-import { Ellipsis, Eye, Handshake, Pencil } from "lucide-react";
+import { Ellipsis, Eye, Handshake, Pencil, Trash } from "lucide-react";
+import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
 interface BookingDropdownMenuCellProps {
@@ -21,46 +23,60 @@ const BookingDropdownMenuCell = ({
 }: BookingDropdownMenuCellProps) => {
   const navigate = useNavigate();
   const { mutate } = useCheckOutBooking();
+  const [open, setOpen] = useState(false);
+  const onClose = () => {
+    setOpen(!open);
+  };
   return (
-    <DropdownMenu>
-      <DropdownMenuTrigger asChild>
-        <Button variant="ghost" size={"icon"}>
-          <Ellipsis />
-        </Button>
-      </DropdownMenuTrigger>
-      <DropdownMenuContent align="start">
-        <DropdownMenuItem
-          className="justify-between"
-          onClick={() => navigate(`/bookings/${bookingId}`)}
-        >
-          <Eye size={20} />
-          مشاهده
-        </DropdownMenuItem>
-        {bookingStatus === "unconfirmed" && (
+    <>
+      <DropdownMenu>
+        <DropdownMenuTrigger asChild>
+          <Button variant="ghost" size={"icon"}>
+            <Ellipsis />
+          </Button>
+        </DropdownMenuTrigger>
+        <DropdownMenuContent align="start">
           <DropdownMenuItem
             className="justify-between"
-            onClick={() => navigate(`/checkIn/${bookingId}`)}
+            onClick={() => navigate(`/bookings/${bookingId}`)}
           >
-            <Pencil size={20} />
-            ویرایش
+            <Eye size={20} />
+            مشاهده
           </DropdownMenuItem>
-        )}
-        {bookingStatus === "checked_in" && (
           <DropdownMenuItem
             className="justify-between"
-            onClick={() =>
-              mutate({
-                id: bookingId,
-                status: "checked_out",
-              })
-            }
+            onClick={() => setOpen(!open)}
           >
-            <Handshake size={20} />
-            تسویه شود
+            <Trash size={20} />
+            حذف
           </DropdownMenuItem>
-        )}
-      </DropdownMenuContent>
-    </DropdownMenu>
+          {bookingStatus === "unconfirmed" && (
+            <DropdownMenuItem
+              className="justify-between"
+              onClick={() => navigate(`/checkIn/${bookingId}`)}
+            >
+              <Pencil size={20} />
+              ویرایش
+            </DropdownMenuItem>
+          )}
+          {bookingStatus === "checked_in" && (
+            <DropdownMenuItem
+              className="justify-between"
+              onClick={() =>
+                mutate({
+                  id: bookingId,
+                  status: "checked_out",
+                })
+              }
+            >
+              <Handshake size={20} />
+              تسویه شود
+            </DropdownMenuItem>
+          )}
+        </DropdownMenuContent>
+      </DropdownMenu>
+      <DeleteModal open={open} onClose={onClose} bookingId={bookingId} />
+    </>
   );
 };
 

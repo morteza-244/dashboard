@@ -58,3 +58,11 @@ export const updateBooking = async (updatedBooking: TCheckInObject) => {
   }
   return data;
 };
+
+export const deleteBooking = async (id: number) => {
+  const { data, error } = await supabase.from("bookings").delete().eq("id", id);
+  if (error) {
+    throw new Error("رزرو مورد نظر حذف نشد.");
+  }
+  return data;
+};
