@@ -5,8 +5,9 @@ import {
   DropdownMenuItem,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
+import useCheckOutBooking from "@/hooks/useCheckOutBooking";
 import { TStatus } from "@/types";
-import { Ellipsis, Eye, Pencil } from "lucide-react";
+import { Ellipsis, Eye, Handshake, Pencil } from "lucide-react";
 import { useNavigate } from "react-router-dom";
 
 interface BookingDropdownMenuCellProps {
@@ -19,6 +20,7 @@ const BookingDropdownMenuCell = ({
   bookingStatus,
 }: BookingDropdownMenuCellProps) => {
   const navigate = useNavigate();
+  const { mutate } = useCheckOutBooking();
   return (
     <DropdownMenu>
       <DropdownMenuTrigger asChild>
@@ -41,6 +43,20 @@ const BookingDropdownMenuCell = ({
           >
             <Pencil size={20} />
             ویرایش
+          </DropdownMenuItem>
+        )}
+        {bookingStatus === "checked_in" && (
+          <DropdownMenuItem
+            className="justify-between"
+            onClick={() =>
+              mutate({
+                id: bookingId,
+                status: "checked_out",
+              })
+            }
+          >
+            <Handshake size={20} />
+            تسویه شود
           </DropdownMenuItem>
         )}
       </DropdownMenuContent>
