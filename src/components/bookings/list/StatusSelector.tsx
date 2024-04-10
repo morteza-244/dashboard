@@ -7,8 +7,10 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 import useBookingStore from "@/store/bookingStore";
+import { useSearchParams } from "react-router-dom";
 
 const StatusSelector = () => {
+  const [searchParams, setSearchParams] = useSearchParams();
   const bookingStatus = useBookingStore((s) => s.bookingQuery.status);
   const setStatus = useBookingStore((s) => s.setStatus);
   const status: { value: string; label: string }[] = [
@@ -24,6 +26,11 @@ const StatusSelector = () => {
   return (
     <Select
       onValueChange={(value) => {
+        if (searchParams.get("page")) {
+          searchParams.set("page", "1");
+          setSearchParams(searchParams);
+        }
+
         setStatus(value);
       }}
     >
