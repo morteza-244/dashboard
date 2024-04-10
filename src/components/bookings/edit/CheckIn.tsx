@@ -1,6 +1,7 @@
 import BookingDetailCard from "@/components/bookings/detail/BookingDetailCard";
 import useGetBooking from "@/hooks/useGetBooking";
 import CheckInFooter from "./CheckInFooter";
+import CheckInSkeleton from "./CheckInSkeleton";
 
 const CheckIn = () => {
   const { data: booking, isLoading } = useGetBooking();
@@ -13,7 +14,7 @@ const CheckIn = () => {
   return (
     <div className="space-y-8">
       {isLoading ? (
-        "loading..."
+        <CheckInSkeleton />
       ) : (
         <>
           <BookingDetailCard

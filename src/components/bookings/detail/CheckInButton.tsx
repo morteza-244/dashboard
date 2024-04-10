@@ -4,7 +4,7 @@ import { useTheme } from "@/components/ThemeProvider";
 import { Button } from "@/components/ui/button";
 import useCheckOutBooking from "@/hooks/useCheckOutBooking";
 import { TStatus } from "@/types";
-import { Trash2 } from "lucide-react";
+import { Pencil, Trash2 } from "lucide-react";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
@@ -25,11 +25,11 @@ const CheckInButton = ({ bookingStatus, bookingId }: CheckInButtonProps) => {
     <div className="flex gap-3 flex-wrap">
       {bookingStatus === "unconfirmed" && (
         <Button
-          size={"sm"}
-          variant={theme === "dark" ? "outline" : "default"}
+          variant={theme === "dark" ? "secondary" : "default"}
           onClick={() => navigate(`/checkIn/${bookingId}`)}
         >
           ویرایش اطلاعات
+          <Pencil size={17} className="mr-1"/>
         </Button>
       )}
       {bookingStatus === "checked_in" && (
