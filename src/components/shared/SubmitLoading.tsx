@@ -4,7 +4,7 @@ const SubmitLoading = () => {
   lineSpinner.register();
   return (
     <>
-      <span className="ml-3">ثبت اطلاعات</span>
+      <span className="ml-3">منتظر بمانید</span>
       <l-line-spinner
         size="20"
         stroke="1.7"
