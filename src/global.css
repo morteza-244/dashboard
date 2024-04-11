@@ -66,10 +66,16 @@
     @apply overflow-hidden rounded-lg shadow-lg bg-slate-100 dark:bg-gradient-to-br dark:from-teal-700 dark:to-teal-900;
   }
   .smallTable-cell {
-    @apply hidden sm:table-cell
+    @apply hidden sm:table-cell;
   }
   .large-cell {
-    @apply hidden lg:table-cell
+    @apply hidden lg:table-cell;
+  }
+  .input-bg {
+    @apply dark:bg-inherit bg-white;
+  }
+  .form-container {
+    @apply rounded-lg p-5 w-full sm:w-96 shadow-lg dark:bg-inherit dark:border bg-slate-50
   }
 }
 

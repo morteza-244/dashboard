@@ -28,8 +28,6 @@ export const cabinSchema = z.object({
   image: z.custom<File[]>(),
 });
 
-export type TCabinFormData = z.infer<typeof cabinSchema>;
-
 export const settingsSchema = z.object({
   minBookingLength: z.number({
     required_error: "این فیلد ضروری میباشد",
@@ -48,4 +46,12 @@ export const settingsSchema = z.object({
     invalid_type_error: "مقدار وارد شده نامعتبر میباشد",
   }),
 });
+
+export const loginSchema = z.object({
+  email: z.string().email({ message: "ایمیل وارد شده نامعتبر میباشد" }),
+  password: z.string().min(6, { message: "رمز عبور حداقل 6 رقم باشد" }),
+});
+
+export type TCabinFormData = z.infer<typeof cabinSchema>;
 export type TSettingsFormData = z.infer<typeof settingsSchema>;
+export type TLoginFormData = z.infer<typeof loginSchema>;
