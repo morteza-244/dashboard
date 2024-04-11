@@ -16,6 +16,7 @@ import {
   UsersPage,
 } from "@/pages";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
+import AuthLayout from "./layouts/AuthLayout";
 
 const App = () => {
   return (
@@ -35,8 +36,10 @@ const App = () => {
               <Route path="/users" element={<UsersPage />} />
               <Route path="/settings" element={<SettingsPage />} />
             </Route>
-            <Route path="*" element={<PageNotFound />} />
-            <Route path="/auth/login" element={<LoginPage />} />
+            <Route element={<AuthLayout />}>
+              <Route path="*" element={<PageNotFound />} />
+              <Route path="/auth/login" element={<LoginPage />} />
+            </Route>
           </Routes>
         </BrowserRouter>
       </ThemeProvider>
