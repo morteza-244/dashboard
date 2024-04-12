@@ -9,7 +9,7 @@ const useLogin = () => {
     mutationFn: loginApi,
     onSuccess: () => {
       toast.success("شما با موفقیت وارد حساب خود شدید");
-      navigate("/");
+      navigate("/", { replace: true });
     },
     onError: (error) => {
       toast.error(error.message);

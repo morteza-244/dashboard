@@ -1,4 +1,4 @@
-import ModeToggle from "@/components/ModeToggle";
+import { Header } from "@/components/header";
 import { SideBar } from "@/components/sideBar";
 import { Outlet } from "react-router-dom";
 
@@ -9,9 +9,7 @@ const MainLayout = () => {
       {/* Main Content */}
       <main className="flex-1 overflow-x-hidden overflow-y-auto dark:bg-inherit">
         {/* Sticky Header */}
-        <header className="sticky top-0 bg-white dark:bg-slate-950 shadow-md p-4 z-50">
-          <ModeToggle />
-        </header>
+        <Header />
         {/* Main Content Body */}
         <div className="container mx-auto p-4">
           <Outlet />
