@@ -9,7 +9,7 @@ import {
   DialogHeader,
   DialogTitle,
   DialogTrigger,
-} from "../ui/dialog";
+} from "@/components/ui/dialog";
 import LogoutLoading from "./LogoutLoading";
 
 const LogoutModal = () => {
@@ -17,9 +17,10 @@ const LogoutModal = () => {
   return (
     <Dialog>
       <DialogTrigger asChild>
-        <Button variant="ghost" size={"icon"}>
+        <div className="popover-item">
           <LogOut size={20} />
-        </Button>
+          خروج
+        </div>
       </DialogTrigger>
       <DialogContent className="w-72 sm:w-full rounded-lg">
         <DialogHeader>

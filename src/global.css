@@ -75,7 +75,10 @@
     @apply dark:bg-inherit bg-white;
   }
   .form-container {
-    @apply rounded-lg p-5 w-full sm:w-96 shadow-lg dark:bg-inherit dark:border bg-slate-50
+    @apply rounded-lg p-5 w-full sm:w-96 shadow-lg dark:bg-inherit dark:border bg-slate-50;
+  }
+  .popover-item {
+    @apply flex items-center hover:bg-muted rounded transition-all text-[14px] gap-1 p-[5px] cursor-pointer;
   }
 }
 
