@@ -8,11 +8,14 @@ import {
   FormMessage,
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
+import useSignUp from "@/hooks/useSignUp";
 import { signUpSchema, TSignUpFormData } from "@/validations/cabinsValidation";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
+import { SubmitLoading } from "../shared";
 
 const SignUpForm = () => {
+  const { mutate, isPending } = useSignUp();
   const form = useForm<TSignUpFormData>({
     defaultValues: {
       fullName: "",
@@ -23,7 +26,18 @@ const SignUpForm = () => {
     resolver: zodResolver(signUpSchema),
   });
   const onSubmit = (data: TSignUpFormData) => {
-    console.log(data);
+    mutate(
+      {
+        email: data.email,
+        fullName: data.fullName,
+        password: data.password,
+      },
+      {
+        onSettled: () => {
+          form.reset();
+        },
+      }
+    );
   };
 
   return (
@@ -40,7 +54,7 @@ const SignUpForm = () => {
             <FormItem>
               <FormLabel>نام</FormLabel>
               <FormControl>
-                <Input className="input-bg" {...field} />
+                <Input disabled={isPending} className="input-bg" {...field} />
               </FormControl>
               <FormMessage />
             </FormItem>
@@ -54,6 +68,7 @@ const SignUpForm = () => {
               <FormLabel>ایمیل</FormLabel>
               <FormControl>
                 <Input
+                  disabled={isPending}
                   className="input-bg"
                   placeholder="example@gmail.com"
                   {...field}
@@ -70,7 +85,7 @@ const SignUpForm = () => {
             <FormItem>
               <FormLabel>رمز عبور</FormLabel>
               <FormControl>
-                <Input className="input-bg" {...field} />
+                <Input disabled={isPending} className="input-bg" {...field} />
               </FormControl>
               <FormMessage />
             </FormItem>
@@ -83,15 +98,17 @@ const SignUpForm = () => {
             <FormItem>
               <FormLabel>تایید رمز عبور</FormLabel>
               <FormControl>
-                <Input className="input-bg" {...field} />
+                <Input disabled={isPending} className="input-bg" {...field} />
               </FormControl>
               <FormMessage />
             </FormItem>
           )}
         />
         <div className="flex gap-2">
-          <Button type="submit">ایجاد کاربر</Button>
-          <Button type="submit" onClick={() => form.reset()}>
+          <Button type="submit" disabled={isPending}>
+            {isPending ? <SubmitLoading /> : "ایجاد کاربر"}
+          </Button>
+          <Button onClick={() => form.reset()} disabled={isPending}>
             لغو
           </Button>
         </div>
