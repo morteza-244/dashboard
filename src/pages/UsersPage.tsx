@@ -1,9 +1,6 @@
-import React from 'react'
-
+import { SignUpForm } from "@/components/authentication";
 const UsersPage = () => {
-  return (
-    <div>UsersPage</div>
-  )
-}
+  return <SignUpForm />;
+};
 
-export default UsersPage
+export default UsersPage;

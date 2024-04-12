@@ -52,6 +52,19 @@ export const loginSchema = z.object({
   password: z.string().min(6, { message: "رمز عبور حداقل 6 رقم باشد" }),
 });
 
+export const signUpSchema = z
+  .object({
+    fullName: z.string().min(3, { message: "حداقل 3 کاراکتر وارد شود" }),
+    email: z.string().email({ message: "ایمیل وارد شده نامعتبر میباشد" }),
+    password: z.string().min(6, "حداقل 6 کاراکتر وارد شود"),
+    confirmPassword: z.string().min(6, "حداقل 6 کاراکتر وارد شود"),
+  })
+  .refine((data) => data.password === data.confirmPassword, {
+    path: ["confirmPassword"],
+    message: "رمز عبور های وارد شده با هم مطابقت ندارند",
+  });
+
 export type TCabinFormData = z.infer<typeof cabinSchema>;
 export type TSettingsFormData = z.infer<typeof settingsSchema>;
 export type TLoginFormData = z.infer<typeof loginSchema>;
+export type TSignUpFormData = z.infer<typeof signUpSchema>;
