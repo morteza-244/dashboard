@@ -5,3 +5,4 @@ export { default as SubmitButton } from "./SubmitButton";
 export { default as SubmitLoading } from "./SubmitLoading";
 export { default as BookingStatusBadge } from "./BookingStatusBadge";
 export { default as BookingSkeleton } from "./BookingSkeleton";
+export { default as PageLoading } from "./PageLoading";

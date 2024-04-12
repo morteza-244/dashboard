@@ -17,6 +17,7 @@ import {
 } from "@/pages";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import AuthLayout from "./layouts/AuthLayout";
+import ProtectedRoute from "./components/AuthProvider";
 
 const App = () => {
   return (
@@ -24,7 +25,13 @@ const App = () => {
       <ThemeProvider defaultTheme="system" storageKey="vite-ui-theme">
         <BrowserRouter>
           <Routes>
-            <Route element={<MainLayout />}>
+            <Route
+              element={
+                <ProtectedRoute>
+                  <MainLayout />
+                </ProtectedRoute>
+              }
+            >
               <Route index element={<DashboardPage />} />
               <Route path="/account" element={<AccountPage />} />
               <Route path="/bookings" element={<BookingsPage />} />
