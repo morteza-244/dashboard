@@ -1,9 +1,7 @@
-import React from 'react'
+import { UpdateUserDataForm } from "@/components/authentication";
 
 const AccountPage = () => {
-  return (
-    <div>AccountPage</div>
-  )
-}
+  return <UpdateUserDataForm />;
+};
 
-export default AccountPage
+export default AccountPage;

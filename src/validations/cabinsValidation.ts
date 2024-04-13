@@ -64,7 +64,13 @@ export const signUpSchema = z
     message: "رمز عبور های وارد شده با هم مطابقت ندارند",
   });
 
+export const updateUserSchema = z.object({
+  fullName: z.string().min(3, { message: "حداقل 3 کاراکتر وارد شود" }),
+  password: z.string().min(6, "حداقل 6 کاراکتر وارد شود").optional(),
+});
+
 export type TCabinFormData = z.infer<typeof cabinSchema>;
 export type TSettingsFormData = z.infer<typeof settingsSchema>;
 export type TLoginFormData = z.infer<typeof loginSchema>;
 export type TSignUpFormData = z.infer<typeof signUpSchema>;
+export type TUpdateUserFormData = z.infer<typeof updateUserSchema>;
