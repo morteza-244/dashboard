@@ -6,7 +6,7 @@ import { ChangeEvent } from "react";
 interface UpdateProfileImageProps {
   file: File | null;
   avatar: string;
-  isPending?: boolean;
+  isPending: boolean;
   handleChangeAvatar: (event: ChangeEvent<HTMLInputElement>) => void;
 }
 

@@ -63,5 +63,11 @@ export type TUserSignUp = {
   password: string;
 };
 
+export type TUpdateUser = {
+  password: string;
+  fullName: string;
+  avatar: File;
+};
+
 export type TBookingStatus = "CHECKED_IN" | "CHECKED_OUT" | "UNCONFIRMED";
 export type TStatus = "checked_in" | "checked_out" | "unconfirmed";

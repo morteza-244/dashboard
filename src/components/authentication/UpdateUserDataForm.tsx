@@ -1,4 +1,4 @@
-import { ShowPasswordIcon } from "@/components/shared";
+import { ShowPasswordIcon, SubmitLoading } from "@/components/shared";
 import { Button } from "@/components/ui/button";
 import {
   Form,
@@ -19,11 +19,13 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { ChangeEvent, useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import UpdateProfileImage from "./UpdateProfileImage";
+import useUpdateUser from "@/hooks/useUpdateUser";
 
 const UpdateUserFormData = () => {
   const [file, setFile] = useState<File | null>(null);
   const [showPassword, setShowPassword] = useState(false);
   const { data: userData } = useCurrentUser();
+  const { mutate, isPending } = useUpdateUser();
   const fullName = String(userData?.user.user_metadata.fullName);
   const form = useForm<TUpdateUserFormData>({
     defaultValues: {
@@ -48,7 +50,14 @@ const UpdateUserFormData = () => {
   };
 
   const onSubmit = (data: TUpdateUserFormData) => {
-    console.log(data);
+    mutate(
+      {
+        avatar: file!,
+        fullName: data.fullName,
+        password: data?.password!,
+      },
+      { onSettled: () => resetField }
+    );
   };
 
   useEffect(() => {
@@ -65,6 +74,7 @@ const UpdateUserFormData = () => {
           file={file}
           handleChangeAvatar={handleChangeAvatar}
           avatar={userData?.user.user_metadata.avatar}
+          isPending={isPending}
         />
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
           <FormField
@@ -74,7 +84,7 @@ const UpdateUserFormData = () => {
               <FormItem>
                 <FormLabel>نام</FormLabel>
                 <FormControl>
-                  <Input className="input-bg" {...field} />
+                  <Input disabled={isPending} className="input-bg" {...field} />
                 </FormControl>
                 <FormMessage />
               </FormItem>
@@ -98,6 +108,7 @@ const UpdateUserFormData = () => {
                 <FormControl>
                   <div className="flex relative">
                     <Input
+                      disabled={isPending}
                       type={showPassword ? "text" : "password"}
                       className="input-bg pl-9"
                       {...field}
@@ -114,8 +125,10 @@ const UpdateUserFormData = () => {
           />
         </div>
         <div className="flex gap-2">
-          <Button type="submit">بروزرسانی</Button>
-          <Button type="reset" onClick={resetField}>
+          <Button type="submit" disabled={isPending}>
+            {isPending ? <SubmitLoading /> : "بروزرسانی اطلاعات"}
+          </Button>
+          <Button type="reset" disabled={isPending} onClick={resetField}>
             لغو
           </Button>
         </div>
