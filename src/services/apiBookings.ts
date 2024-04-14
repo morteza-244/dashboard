@@ -1,6 +1,7 @@
 import { PAGE_SIZE } from "@/constants";
 import { TBookingQuery, TCheckInObject } from "@/types";
 import supabase from "./supabase";
+import { getToday } from "@/lib/utils";
 
 export const getBookings = async (
   bookingQuery: TBookingQuery,
@@ -25,9 +26,36 @@ export const getBookings = async (
   const { data, error, count } = await query;
   if (error) {
     console.log(error.message);
-    throw new Error("Bookings could not be loaded");
+    throw new Error("رزروی یافت نشد");
   }
   return { data, count };
+};
+
+export const getBookingAfterDate = async (date: string) => {
+  const { data, error } = await supabase
+    .from("bookings")
+    .select("created_at, totalPrice, extrasPrice")
+    .gte("created_at", date)
+    .lte("created_at", getToday({ end: true }));
+
+  if (error) {
+    console.log(error);
+    throw new Error("رزروی یافت نشد");
+  }
+  return data;
+};
+
+export const getStaysAfterDate = async (date: string) => {
+  const { data, error } = await supabase
+    .from("bookings")
+    .select("*, guests(fullName)")
+    .gte("startDate", date)
+    .lte("startDate", getToday({}));
+  if (error) {
+    console.log(error);
+    throw new Error("رزروی یافت نشد");
+  }
+  return data;
 };
 
 export const getBooking = async (id: number) => {

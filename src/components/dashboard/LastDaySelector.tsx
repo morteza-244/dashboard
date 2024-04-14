@@ -19,7 +19,7 @@ const LastDaySelector = () => {
   const currentDay = days.find((day) => day.value === lastDay)?.label;
   return (
     <Select onValueChange={(value) => setLastDay(value)}>
-      <SelectTrigger className="w-[180px] dir-rtl">
+      <SelectTrigger className="w-32 dir-rtl">
         <SelectValue placeholder={currentDay} />
       </SelectTrigger>
       <SelectContent>

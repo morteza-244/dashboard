@@ -80,6 +80,15 @@
   .popover-item {
     @apply flex items-center hover:bg-muted rounded transition-all text-[14px] gap-1 p-[5px] cursor-pointer;
   }
+  .money-stats {
+    @apply bg-green-300 text-green-700 dark:bg-green-200;
+  }
+  .booking-stats {
+    @apply bg-blue-300 text-blue-700 dark:bg-blue-200;
+  }
+  .occupancy-stats {
+    @apply bg-yellow-300 text-yellow-700 dark:bg-yellow-200;
+  }
 }
 
 @layer base {
