@@ -1,4 +1,4 @@
-import { UpdateUserDataForm } from "@/components/authentication";
+import { UpdateUserDataForm } from "@/components/authentication/update";
 
 const AccountPage = () => {
   return <UpdateUserDataForm />;

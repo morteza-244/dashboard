@@ -1,4 +1,3 @@
-import { Button } from "@/components/ui/button";
 import {
   Form,
   FormControl,
@@ -12,10 +11,14 @@ import useSignUp from "@/hooks/useSignUp";
 import { signUpSchema, TSignUpFormData } from "@/validations/cabinsValidation";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
-import { SubmitLoading } from "../shared";
+import { useState } from "react";
+import { ShowPasswordIcon } from "@/components/shared";
+import UserFormFooter from "@/components/authentication/UserFormFooter";
 
 const SignUpForm = () => {
   const { mutate, isPending } = useSignUp();
+  const [showPassword, setShowPassword] = useState(false);
+
   const form = useForm<TSignUpFormData>({
     defaultValues: {
       fullName: "",
@@ -25,6 +28,15 @@ const SignUpForm = () => {
     },
     resolver: zodResolver(signUpSchema),
   });
+
+  const resetField = () => {
+    form.reset();
+  };
+
+  const handleShowPassword = () => {
+    setShowPassword(!showPassword);
+  };
+
   const onSubmit = (data: TSignUpFormData) => {
     mutate(
       {
@@ -33,9 +45,7 @@ const SignUpForm = () => {
         password: data.password,
       },
       {
-        onSettled: () => {
-          form.reset();
-        },
+        onSettled: () => resetField,
       }
     );
   };
@@ -85,7 +95,18 @@ const SignUpForm = () => {
             <FormItem>
               <FormLabel>رمز عبور</FormLabel>
               <FormControl>
-                <Input disabled={isPending} className="input-bg" {...field} />
+                <div className="flex relative">
+                  <Input
+                    disabled={isPending}
+                    type={showPassword ? "text" : "password"}
+                    className="input-bg"
+                    {...field}
+                  />
+                  <ShowPasswordIcon
+                    handleShowPassword={handleShowPassword}
+                    showPassword={showPassword}
+                  />
+                </div>
               </FormControl>
               <FormMessage />
             </FormItem>
@@ -98,20 +119,24 @@ const SignUpForm = () => {
             <FormItem>
               <FormLabel>تایید رمز عبور</FormLabel>
               <FormControl>
-                <Input disabled={isPending} className="input-bg" {...field} />
+                <div className="flex relative">
+                  <Input
+                    disabled={isPending}
+                    type={showPassword ? "text" : "password"}
+                    className="input-bg"
+                    {...field}
+                  />
+                  <ShowPasswordIcon
+                    handleShowPassword={handleShowPassword}
+                    showPassword={showPassword}
+                  />
+                </div>
               </FormControl>
               <FormMessage />
             </FormItem>
           )}
         />
-        <div className="flex gap-2">
-          <Button type="submit" disabled={isPending}>
-            {isPending ? <SubmitLoading /> : "ایجاد کاربر"}
-          </Button>
-          <Button onClick={() => form.reset()} disabled={isPending}>
-            لغو
-          </Button>
-        </div>
+        <UserFormFooter isPending={isPending} resetField={resetField} />
       </form>
     </Form>
   );

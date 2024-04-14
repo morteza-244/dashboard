@@ -11,6 +11,7 @@ interface UserDropdownMenuProps {
 
 const UserDropdownMenu = ({ fullName, avatar }: UserDropdownMenuProps) => {
   const navigate = useNavigate();
+
   return (
     <Popover>
       <PopoverTrigger asChild>
@@ -19,7 +20,7 @@ const UserDropdownMenu = ({ fullName, avatar }: UserDropdownMenuProps) => {
           <AvatarFallback>{fullName.slice(0, 2).toUpperCase()}</AvatarFallback>
         </Avatar>
       </PopoverTrigger>
-      <PopoverContent className="w-40 p-1 space-y-1 ml-4">
+      <PopoverContent className="w-32 p-1 space-y-1 ml-4">
         <div className="popover-item" onClick={() => navigate("/account")}>
           <UserRound size={20} />
           پروفایل

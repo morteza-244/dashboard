@@ -1,5 +1,5 @@
-import { ShowPasswordIcon, SubmitLoading } from "@/components/shared";
-import { Button } from "@/components/ui/button";
+import UserFormFooter from "@/components/authentication/UserFormFooter";
+import { ShowPasswordIcon } from "@/components/shared";
 import {
   Form,
   FormControl,
@@ -11,6 +11,7 @@ import {
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import useCurrentUser from "@/hooks/useCurrentUser";
+import useUpdateUser from "@/hooks/useUpdateUser";
 import {
   TUpdateUserFormData,
   updateUserSchema,
@@ -19,7 +20,6 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { ChangeEvent, useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import UpdateProfileImage from "./UpdateProfileImage";
-import useUpdateUser from "@/hooks/useUpdateUser";
 
 const UpdateUserFormData = () => {
   const [file, setFile] = useState<File | null>(null);
@@ -27,6 +27,7 @@ const UpdateUserFormData = () => {
   const { data: userData } = useCurrentUser();
   const { mutate, isPending } = useUpdateUser();
   const fullName = String(userData?.user.user_metadata.fullName);
+
   const form = useForm<TUpdateUserFormData>({
     defaultValues: {
       fullName: fullName,
@@ -124,14 +125,7 @@ const UpdateUserFormData = () => {
             )}
           />
         </div>
-        <div className="flex gap-2">
-          <Button type="submit" disabled={isPending}>
-            {isPending ? <SubmitLoading /> : "بروزرسانی اطلاعات"}
-          </Button>
-          <Button type="reset" disabled={isPending} onClick={resetField}>
-            لغو
-          </Button>
-        </div>
+        <UserFormFooter isPending={isPending} resetField={resetField} />
       </form>
     </Form>
   );
