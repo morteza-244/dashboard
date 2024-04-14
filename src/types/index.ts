@@ -50,6 +50,7 @@ export type TBookingQuery = {
   status: string;
   order: string;
   sortType: boolean;
+  lastDay: string;
 };
 
 export type TUserLogin = {

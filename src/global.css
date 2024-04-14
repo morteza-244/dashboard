@@ -91,6 +91,9 @@
     direction: rtl;
     @apply bg-background text-foreground;
   }
+  .dir-rtl {
+    direction: rtl;
+  }
   @font-face {
     font-family: "iran-sans";
     src: url("/fonts/IRANSans.ttf");

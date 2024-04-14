@@ -5,6 +5,7 @@ type TBookingStore = {
   setStatus: (value: string) => void;
   setSortValue: (value: string) => void;
   setSortType: (value: boolean) => void;
+  setLastDay: (value: string) => void;
 };
 
 const useBookingStore = create<TBookingStore>((set) => ({
@@ -12,6 +13,7 @@ const useBookingStore = create<TBookingStore>((set) => ({
     order: "",
     status: "all",
     sortType: true,
+    lastDay: "7",
   },
   setStatus: (value) =>
     set((store) => ({
@@ -22,6 +24,10 @@ const useBookingStore = create<TBookingStore>((set) => ({
   setSortType: (value) =>
     set((store) => ({
       bookingQuery: { ...store.bookingQuery, sortType: value },
+    })),
+  setLastDay: (value) =>
+    set((store) => ({
+      bookingQuery: { ...store.bookingQuery, lastDay: value },
     })),
 }));
 export default useBookingStore;
