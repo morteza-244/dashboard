@@ -38,6 +38,7 @@
     "react-hook-form": "^7.51.2",
     "react-loading-skeleton": "^3.4.0",
     "react-router-dom": "^6.22.3",
+    "recharts": "^2.12.5",
     "sonner": "^1.4.41",
     "supabase": "^1.151.1",
     "tailwind-merge": "^2.2.2",
