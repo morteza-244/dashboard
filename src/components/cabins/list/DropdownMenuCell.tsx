@@ -6,7 +6,7 @@ import {
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 import useDeleteCabin from "@/hooks/useDeleteCabin";
-import { Ellipsis, Eye, Pencil, Trash2 } from "lucide-react";
+import { Ellipsis, Pencil, Trash2 } from "lucide-react";
 import { useNavigate } from "react-router-dom";
 
 interface DropdownMenuCellProps {
@@ -38,10 +38,6 @@ const DropdownMenuCell = ({ cabinId }: DropdownMenuCellProps) => {
         >
           <Trash2 size={20} />
           حذف
-        </DropdownMenuItem>
-        <DropdownMenuItem className="justify-between">
-          <Eye size={20} />
-          مشاهده
         </DropdownMenuItem>
       </DropdownMenuContent>
     </DropdownMenu>
