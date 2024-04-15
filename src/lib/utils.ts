@@ -1,3 +1,4 @@
+import { TStartData, TBooking } from "@/types";
 import { type ClassValue, clsx } from "clsx";
 import { formatDistance, parseISO } from "date-fns-jalali";
 import { twMerge } from "tailwind-merge";
@@ -28,4 +29,29 @@ export const getToday = (options: { end?: boolean }) => {
     today.setUTCHours(23, 59, 59, 999);
   else today.setUTCHours(0, 0, 0, 0);
   return today.toISOString();
+};
+
+export const prepareData = (startData: TStartData[], stays: TBooking[]) => {
+  function incArrayValue(arr: TStartData[], field: number | string) {
+    return arr?.map((obj) =>
+      obj.duration === field ? { ...obj, value: obj.value + 1 } : obj
+    );
+  }
+
+  const data = stays
+    ?.reduce((arr, cur) => {
+      const num = cur.numNights!;
+      if (num === 1) return incArrayValue(arr, "1 شب");
+      if (num === 2) return incArrayValue(arr, "2 شب");
+      if (num === 3) return incArrayValue(arr, "3 شب");
+      if ([4, 5].includes(num)) return incArrayValue(arr, "4-5 شب");
+      if ([6, 7].includes(num)) return incArrayValue(arr, "6-7 شب");
+      if (num >= 8 && num <= 14) return incArrayValue(arr, "8-14 شب");
+      if (num >= 15 && num <= 21) return incArrayValue(arr, "15-21 شب");
+      if (num >= 21) return incArrayValue(arr, "21+ شب");
+      return arr;
+    }, startData)
+    .filter((obj) => obj.value > 0);
+
+  return data;
 };

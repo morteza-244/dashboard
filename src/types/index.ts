@@ -76,5 +76,11 @@ export type TRecentBooking = {
   extrasPrice: number | null;
 };
 
+export type TStartData = {
+  duration: string;
+  value: number;
+  color: string;
+};
+
 export type TBookingStatus = "CHECKED_IN" | "CHECKED_OUT" | "UNCONFIRMED";
 export type TStatus = "checked_in" | "checked_out" | "unconfirmed";

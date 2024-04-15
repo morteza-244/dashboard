@@ -6,11 +6,13 @@ import SalesChart from "./SalesChart";
 import StatisticsSkeleton from "./StatisticsSkeleton";
 import StatItems from "./StatItems";
 import StatsDrawer from "./StatsDrawer";
+import DurationPieChart from "./DurationPieChart";
+import { Legend } from "recharts";
 
 const Dashboard = () => {
   const { recentBooking, recentBookingLoading, recentBookingError } =
     useRecentBooking();
-  const { confirmedStays, numOfDays, staysLoading, staysError } =
+  const { confirmedStays, numOfDays, staysLoading, staysError, stays } =
     useRecentStays();
   const { data: cabins, isLoading, error } = useGetCabins();
 
@@ -28,11 +30,13 @@ const Dashboard = () => {
   const occupationPercent = occupation! / (numOfDays * numOfCabins!);
   const loading = recentBookingLoading || staysLoading || isLoading;
   const resError = recentBookingError || staysError || error;
-  
+
   if (resError) return <p>مشکلی رخ داده است</p>;
 
+  console.log(confirmedStays!);
+
   return (
-    <div className="space-y-5">
+    <div className="space-y-10 px-5">
       <h3 className="text-3xl">خانه</h3>
       <div className="flex justify-end gap-2 sm:gap-0">
         <LastDaySelector />
@@ -61,7 +65,24 @@ const Dashboard = () => {
           />
         )}
       </div>
-      <div className="space-y-3">
+      <div className="space-y-7">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
+          <div className="hidden sm:block">
+            <DurationPieChart confirmedStays={stays!}>
+              <Legend
+                verticalAlign="middle"
+                width={130}
+                align="right"
+                iconType="circle"
+                iconSize={10}
+              />
+            </DurationPieChart>
+          </div>
+          <div className="block sm:hidden">
+            <DurationPieChart confirmedStays={stays!} />
+          </div>
+          <div>slider</div>
+        </div>
         <h4 className="text-xl">نمودار فروش</h4>
         <SalesChart bookings={recentBooking!!} numOfDays={numOfDays} />
       </div>
