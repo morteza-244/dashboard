@@ -11,7 +11,6 @@ import {
   DashboardPage,
   EditCabinPage,
   LoginPage,
-  PageNotFound,
   SettingsPage,
   UsersPage,
 } from "@/pages";
@@ -44,7 +43,6 @@ const App = () => {
               <Route path="/settings" element={<SettingsPage />} />
             </Route>
             <Route element={<AuthLayout />}>
-              <Route path="*" element={<PageNotFound />} />
               <Route path="/auth/login" element={<LoginPage />} />
             </Route>
           </Routes>
