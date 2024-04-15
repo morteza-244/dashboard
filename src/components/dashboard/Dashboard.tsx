@@ -1,10 +1,11 @@
+import useGetCabins from "@/hooks/useGetCabins";
 import useRecentBooking from "@/hooks/useRecentBooking";
+import useRecentStays from "@/hooks/useRecentStays";
 import LastDaySelector from "./LastDaySelector";
+import SalesChart from "./SalesChart";
+import StatisticsSkeleton from "./StatisticsSkeleton";
 import StatItems from "./StatItems";
 import StatsDrawer from "./StatsDrawer";
-import useRecentStays from "@/hooks/useRecentStays";
-import useGetCabins from "@/hooks/useGetCabins";
-import StatisticsSkeleton from "./StatisticsSkeleton";
 
 const Dashboard = () => {
   const { recentBooking, recentBookingLoading, recentBookingError } =
@@ -27,6 +28,7 @@ const Dashboard = () => {
   const occupationPercent = occupation! / (numOfDays * numOfCabins!);
   const loading = recentBookingLoading || staysLoading || isLoading;
   const resError = recentBookingError || staysError || error;
+  
   if (resError) return <p>مشکلی رخ داده است</p>;
 
   return (
@@ -58,6 +60,10 @@ const Dashboard = () => {
             occupationPercent={occupationPercent}
           />
         )}
+      </div>
+      <div className="space-y-3">
+        <h4 className="text-xl">نمودار فروش</h4>
+        <SalesChart bookings={recentBooking!!} numOfDays={numOfDays} />
       </div>
     </div>
   );
