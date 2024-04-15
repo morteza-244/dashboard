@@ -8,6 +8,8 @@ import StatItems from "./StatItems";
 import StatsDrawer from "./StatsDrawer";
 import DurationPieChart from "./DurationPieChart";
 import { Legend } from "recharts";
+import PieChartSkeleton from "./PieChartSkeleton";
+import SalesChartSkeleton from "./SalesChartSkeleton";
 
 const Dashboard = () => {
   const { recentBooking, recentBookingLoading, recentBookingError } =
@@ -32,8 +34,6 @@ const Dashboard = () => {
   const resError = recentBookingError || staysError || error;
 
   if (resError) return <p>مشکلی رخ داده است</p>;
-
-  console.log(confirmedStays!);
 
   return (
     <div className="space-y-10 px-5">
@@ -68,23 +68,34 @@ const Dashboard = () => {
       <div className="space-y-7">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
           <div className="hidden sm:block">
-            <DurationPieChart confirmedStays={stays!}>
-              <Legend
-                verticalAlign="middle"
-                width={130}
-                align="right"
-                iconType="circle"
-                iconSize={10}
-              />
-            </DurationPieChart>
+            {loading ? (
+              <PieChartSkeleton />
+            ) : (
+              <DurationPieChart confirmedStays={stays!}>
+                <Legend
+                  verticalAlign="middle"
+                  width={130}
+                  align="right"
+                  iconType="circle"
+                  iconSize={10}
+                />
+              </DurationPieChart>
+            )}
           </div>
           <div className="block sm:hidden">
-            <DurationPieChart confirmedStays={stays!} />
+            {loading ? (
+              <PieChartSkeleton />
+            ) : (
+              <DurationPieChart confirmedStays={stays!} />
+            )}
           </div>
-          <div>slider</div>
         </div>
         <h4 className="text-xl">نمودار فروش</h4>
-        <SalesChart bookings={recentBooking!!} numOfDays={numOfDays} />
+        {loading ? (
+          <SalesChartSkeleton />
+        ) : (
+          <SalesChart bookings={recentBooking!!} numOfDays={numOfDays} />
+        )}
       </div>
     </div>
   );
