@@ -1,17 +1,17 @@
-import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
 import React from "react";
 import ReactDOM from "react-dom/client";
 import App from "./App.tsx";
 import "./global.css";
-import QueryClientProvider from "./QueryClientProvider.tsx";
-import { Toaster } from "@/components/ui/sonner";
+import { ErrorBoundary } from "react-error-boundary";
+import FallbackError from "./FallbackError.tsx";
 
 ReactDOM.createRoot(document.getElementById("root")!).render(
   <React.StrictMode>
-    <QueryClientProvider>
+    <ErrorBoundary
+      FallbackComponent={FallbackError}
+      onReset={() => window.location.replace("/")}
+    >
       <App />
-      <Toaster position="top-center" duration={1000} />
-      <ReactQueryDevtools />
-    </QueryClientProvider>
+    </ErrorBoundary>
   </React.StrictMode>
 );
