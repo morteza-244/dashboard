@@ -54,7 +54,7 @@ const App = () => {
             </Routes>
           </BrowserRouter>
         </SkeletonTheme>
-        <Toaster position="top-center" duration={1000} />
+        <Toaster position="top-center" className="dir-rtl" duration={1000} richColors={true} />
         <ReactQueryDevtools />
       </QueryClientProvider>
     </ThemeProvider>
