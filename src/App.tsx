@@ -36,7 +36,7 @@ const App = () => {
                   </ProtectedRoute>
                 }
               >
-                <Route index element={<DashboardPage />} />
+                <Route path="/" element={<DashboardPage />} />
                 <Route path="/account" element={<AccountPage />} />
                 <Route path="/bookings" element={<BookingsPage />} />
                 <Route path="/bookings/:id" element={<BookingDetailPage />} />
