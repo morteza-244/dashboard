@@ -10,7 +10,7 @@ interface StatProps {
 const Stat = ({ color, icon, title, value }: StatProps) => {
   return (
     <>
-      <div className="bg-white dark:bg-muted shadow-lg rounded-lg p-2 w-52 h-20 hover:scale-110 transition-transform flex items-center">
+      <div className="bg-slate-100 dark:bg-muted shadow-lg rounded-lg p-2 w-52 h-20 hover:scale-110 transition-transform flex items-center">
         <div className="flex items-center gap-2">
           <div
             className={`w-9 sm:w-12 h-9 sm:h-12 rounded-full ${color} flex flex-col items-center justify-center`}

@@ -1,4 +1,6 @@
+import SideBarLinksContainer from "@/components/sideBar/SideBarLinksContainer";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
+import { Separator } from "@/components/ui/separator";
 import {
   Sheet,
   SheetContent,
@@ -8,8 +10,7 @@ import {
   SheetTrigger,
 } from "@/components/ui/sheet";
 import { AlignJustify } from "lucide-react";
-import SideBarLinksContainer from "@/components/sideBar/SideBarLinksContainer";
-import { Separator } from "@/components/ui/separator";
+import LogoutModal from "../shared/LogoutModal";
 
 interface HamburgerMenuProps {
   avatar: string;
@@ -20,7 +21,7 @@ interface HamburgerMenuProps {
 const HamburgerMenu = ({ avatar, fullName, email }: HamburgerMenuProps) => {
   return (
     <Sheet>
-      <SheetTrigger className="block sm:hidden">
+      <SheetTrigger className="block md:hidden">
         <AlignJustify />
       </SheetTrigger>
       <SheetContent>
@@ -38,8 +39,9 @@ const HamburgerMenu = ({ avatar, fullName, email }: HamburgerMenuProps) => {
             </div>
           </SheetTitle>
           <Separator />
-          <SheetDescription>
+          <SheetDescription className="flex flex-col justify-between h-96">
             <SideBarLinksContainer />
+            <LogoutModal />
           </SheetDescription>
         </SheetHeader>
       </SheetContent>
