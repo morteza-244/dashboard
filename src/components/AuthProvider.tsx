@@ -8,7 +8,7 @@ const AuthProvider = ({ children }: PropsWithChildren) => {
 
   useEffect(() => {
     if (!isAuthenticated && !isLoading) {
-      window.location.pathname = "/auth/login";
+      window.location.pathname = "/login";
     }
   }, [isAuthenticated, isLoading]);
 

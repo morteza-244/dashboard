@@ -48,7 +48,7 @@ const App = () => {
                 <Route path="/settings" element={<SettingsPage />} />
               </Route>
               <Route element={<AuthLayout />}>
-                <Route path="/auth/login" element={<LoginPage />} />
+                <Route path="/login" element={<LoginPage />} />
               </Route>
               <Route path="*" element={<PageNotFound />} />
             </Routes>
