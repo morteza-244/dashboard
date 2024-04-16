@@ -29,6 +29,8 @@
     "class-variance-authority": "^0.7.0",
     "clsx": "^2.1.0",
     "date-fns-jalali": "^3.6.0-0",
+    "embla-carousel-autoplay": "^8.0.2",
+    "embla-carousel-react": "^8.0.2",
     "ldrs": "^1.0.1",
     "lucide-react": "^0.363.0",
     "next-themes": "^0.3.0",

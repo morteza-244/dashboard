@@ -82,5 +82,26 @@ export type TStartData = {
   color: string;
 };
 
+export type TTodayBooking = {
+  id: number | null;
+  created_at: string | null;
+  startDate: string | null;
+  endDate: string | null;
+  numNights: number | null;
+  numGuests: number | null;
+  cabinPrice: number | null;
+  extrasPrice: number | null;
+  totalPrice: number | null;
+  status: string | null;
+  hasBreakfast: boolean | null;
+  isPaid: boolean | null;
+  observations: string | null;
+  guestId: number | null;
+  cabinId: number | null;
+  guests: {
+    fullName: string | null;
+  } | null;
+};
+
 export type TBookingStatus = "CHECKED_IN" | "CHECKED_OUT" | "UNCONFIRMED";
 export type TStatus = "checked_in" | "checked_out" | "unconfirmed";

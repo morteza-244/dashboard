@@ -58,6 +58,21 @@ export const getStaysAfterDate = async (date: string) => {
   return data;
 };
 
+export const getStaysTodayActivity = async () => {
+  const { data, error } = await supabase
+    .from("bookings")
+    .select("*, guests(fullName)")
+    .in("status", ["checked_in", "unconfirmed"])
+    .order("created_at", { ascending: false })
+    .limit(4);
+
+  if (error) {
+    console.error(error);
+    throw new Error("Bookings could not get loaded");
+  }
+  return data;
+};
+
 export const getBooking = async (id: number) => {
   const { data, error } = await supabase
     .from("bookings")

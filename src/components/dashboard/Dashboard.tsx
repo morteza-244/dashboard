@@ -10,6 +10,8 @@ import DurationPieChart from "./DurationPieChart";
 import { Legend } from "recharts";
 import PieChartSkeleton from "./PieChartSkeleton";
 import SalesChartSkeleton from "./SalesChartSkeleton";
+import TodayActivityCarousel from "./TodayActivityCarousel";
+import useTodayActivity from "@/hooks/useTodayActivity";
 
 const Dashboard = () => {
   const { recentBooking, recentBookingLoading, recentBookingError } =
@@ -17,6 +19,7 @@ const Dashboard = () => {
   const { confirmedStays, numOfDays, staysLoading, staysError, stays } =
     useRecentStays();
   const { data: cabins, isLoading, error } = useGetCabins();
+  const { data: todayBooking } = useTodayActivity();
 
   const numOfBookings = recentBooking?.length;
   const numOfCabins = cabins?.length;
@@ -89,6 +92,7 @@ const Dashboard = () => {
               <DurationPieChart confirmedStays={stays!} />
             )}
           </div>
+          <TodayActivityCarousel data={todayBooking!} />
         </div>
         <h4 className="text-xl">نمودار فروش</h4>
         {loading ? (

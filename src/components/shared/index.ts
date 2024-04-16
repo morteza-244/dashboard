@@ -7,4 +7,5 @@ export { default as PageLoading } from "./PageLoading";
 export { default as SkeletonTheme } from "./SkeletonTheme";
 export { default as SubmitButton } from "./SubmitButton";
 export { default as SubmitLoading } from "./SubmitLoading";
+export { default as CheckOutLoading } from "./CheckOutLoading";
 export { default as ShowPasswordIcon } from "./ShowPasswordIcon";
