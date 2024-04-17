@@ -18,7 +18,9 @@ const CabinsTable = () => {
 
   return (
     <>
-      <Button onClick={() => navigate("/cabins/new")}>افزودن اقامتگاه</Button>
+      <Button onClick={() => navigate("/cabins/new")} variant="secondary" className="mb-4">
+        افزودن اقامتگاه
+      </Button>
       <Table>
         <TableHeader>
           <TableRow>

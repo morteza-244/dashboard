@@ -95,6 +95,9 @@
   .small-btn {
     @apply h-8 rounded px-2 text-xs sm:text-sm sm:h-9 sm:px-2 sm:py-2;
   }
+  .colorMode-bg{
+    @apply bg-slate-100 dark:bg-gray-900 shadow-md
+  }
 }
 
 @layer base {

@@ -29,15 +29,23 @@ const CreateCabinForm = () => {
     },
   });
 
-  const { mutate, isPending } = useCreateCabin({
-    resetFileUrl: () => setFileUrl(""),
-    reset: form.reset,
-  });
+  const resetField = () => {
+    setFileUrl("");
+    form.reset();
+  };
+
+  const { mutate, isPending } = useCreateCabin();
+
   const onSubmit = (data: TCabinFormData) => {
-    mutate({
-      ...data,
-      image: data.image[0],
-    });
+    mutate(
+      {
+        ...data,
+        image: data.image[0],
+      },
+      {
+        onSettled: () => resetField(),
+      }
+    );
   };
 
   return (

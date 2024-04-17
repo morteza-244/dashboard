@@ -37,7 +37,7 @@ const FileUploader = ({
     <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
       <div
         {...getRootProps()}
-        className="flex justify-center items-center flex-col rounded-xl cursor-pointer bg-gray-200 h-52"
+        className="flex justify-center items-center flex-col rounded-xl cursor-pointer colorMode-bg h-52"
       >
         <input {...getInputProps()} className="cursor-pointer" />
         <div className="flex flex-col items-center gap-3">
@@ -46,7 +46,7 @@ const FileUploader = ({
           <p className="text-sm text-gray-600 font-bold">SVG, JPG, PNG</p>
         </div>
       </div>
-      <div className="flex flex-col justify-center items-center bg-gray-200 h-52 rounded-xl">
+      <div className="flex flex-col justify-center items-center colorMode-bg h-52 rounded-xl">
         {fileUrl || currentImage ? (
           <img
             src={fileUrl || currentImage}
