@@ -16,10 +16,13 @@ import useTodayActivity from "@/hooks/useTodayActivity";
 const Dashboard = () => {
   const { recentBooking, recentBookingLoading, recentBookingError } =
     useRecentBooking();
-  const { confirmedStays, numOfDays, staysLoading, staysError, stays } =
-    useRecentStays();
+  const { numOfDays, staysLoading, staysError, stays } = useRecentStays();
   const { data: cabins, isLoading, error } = useGetCabins();
   const { data: todayBooking } = useTodayActivity();
+
+  const confirmedStays = stays?.filter(
+    (item) => item.status === "checked_in" || item.status === "checked_out"
+  );
 
   const numOfBookings = recentBooking?.length;
   const numOfCabins = cabins?.length;
@@ -74,7 +77,7 @@ const Dashboard = () => {
             {loading ? (
               <PieChartSkeleton />
             ) : (
-              <DurationPieChart confirmedStays={stays!}>
+              <DurationPieChart confirmedStays={confirmedStays!}>
                 <Legend
                   verticalAlign="middle"
                   width={130}

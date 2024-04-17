@@ -27,7 +27,7 @@ const DurationPieChart = ({
   };
 
   return (
-    <div className="p-4 space-y-3 sm:shadow-md shadow-md bg-slate-100 dark:bg-gray-900 rounded-lg">
+    <div className="p-4 space-y-4 sm:shadow-md shadow-md bg-slate-100 dark:bg-gray-900 rounded-lg">
       <h4 className="text-center sm:text-right">نمودار مدت زمان اقامت</h4>
       <ResponsiveContainer width="100%" height={210}>
         <PieChart className="p-5">
@@ -38,7 +38,6 @@ const DurationPieChart = ({
             innerRadius={80}
             outerRadius={100}
             paddingAngle={3}
-            className="border"
             minAngle={15}
           >
             {data?.map((entry) => (

@@ -49,8 +49,6 @@ export const getStaysAfterDate = async (date: string) => {
   const { data, error } = await supabase
     .from("bookings")
     .select("*, guests(fullName)")
-    .gte("startDate", date)
-    .lte("startDate", getToday({}));
   if (error) {
     console.log(error);
     throw new Error("رزروی یافت نشد");
