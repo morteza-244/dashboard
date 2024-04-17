@@ -26,8 +26,9 @@ const ModeToggle = () => {
         </Button>
       </DropdownMenuTrigger>
       <DropdownMenuContent align="end" className="ml-5 md:ml-0">
-        {modes.map((mode) => (
+        {modes.map((mode, index) => (
           <DropdownMenuItem
+            key={index}
             onClick={() => setTheme(mode.theme)}
             className="justify-end"
           >

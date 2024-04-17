@@ -24,6 +24,7 @@ const BookingsTable = () => {
             ))}
           {bookings?.data.map((booking) => (
             <BookingRow
+              key={booking.id}
               booking={booking}
               cabin={booking.cabins!}
               guestsInfo={booking.guests!}
