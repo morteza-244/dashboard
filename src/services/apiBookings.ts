@@ -45,7 +45,7 @@ export const getBookingAfterDate = async (date: string) => {
   return data;
 };
 
-export const getStaysAfterDate = async (date: string) => {
+export const getStaysAfterDate = async () => {
   const { data, error } = await supabase
     .from("bookings")
     .select("*, guests(fullName)")

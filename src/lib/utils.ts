@@ -1,4 +1,4 @@
-import { TStartData, TBooking, TTodayBooking } from "@/types";
+import { TStartData, TTodayBooking } from "@/types";
 import { type ClassValue, clsx } from "clsx";
 import { formatDistance, parseISO } from "date-fns-jalali";
 import { twMerge } from "tailwind-merge";
@@ -31,7 +31,10 @@ export const getToday = (options: { end?: boolean }) => {
   return today.toISOString();
 };
 
-export const prepareData = (startData: TStartData[], stays: TTodayBooking[]) => {
+export const prepareData = (
+  startData: TStartData[],
+  stays: TTodayBooking[]
+) => {
   function incArrayValue(arr: TStartData[], field: number | string) {
     return arr?.map((obj) =>
       obj.duration === field ? { ...obj, value: obj.value + 1 } : obj
