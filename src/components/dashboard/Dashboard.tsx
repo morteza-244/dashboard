@@ -1,16 +1,10 @@
 import useGetCabins from "@/hooks/useGetCabins";
 import useRecentBooking from "@/hooks/useRecentBooking";
 import useRecentStays from "@/hooks/useRecentStays";
-import { Legend } from "recharts";
-import DurationPieChart from "./DurationPieChart";
-import LastDaySelector from "./LastDaySelector";
-import PieChartSkeleton from "./PieChartSkeleton";
-import SalesChart from "./SalesChart";
-import SalesChartSkeleton from "./SalesChartSkeleton";
-import StatisticsSkeleton from "./StatisticsSkeleton";
-import StatItems from "./StatItems";
-import StatsDrawer from "./StatsDrawer";
-import TodayActivityCarousel from "./TodayActivityCarousel";
+import { TodayBookingCarousel } from "./bookingCarousel";
+import { DurationChart } from "./durationChart";
+import { SalesChartContainer } from "./salesChart";
+import { Statistics } from "./statistics";
 
 const Dashboard = () => {
   const { recentBooking, recentBookingLoading, recentBookingError } =
@@ -42,65 +36,23 @@ const Dashboard = () => {
   return (
     <div className="space-y-10 px-5">
       <h3 className="text-3xl">خانه</h3>
-      <div className="flex justify-end gap-2 sm:gap-0">
-        <LastDaySelector />
-        <StatsDrawer>
-          {loading ? (
-            <StatisticsSkeleton />
-          ) : (
-            <StatItems
-              numOfBookings={numOfBookings!}
-              sales={sales!}
-              numOfCheckIns={numOfCheckIns!}
-              occupationPercent={occupationPercent}
-            />
-          )}
-        </StatsDrawer>
-      </div>
-      <div className="hidden sm:flex justify-center lg:justify-evenly flex-wrap gap-y-4 gap-x-3">
-        {loading ? (
-          <StatisticsSkeleton />
-        ) : (
-          <StatItems
-            numOfBookings={numOfBookings!}
-            sales={sales!}
-            numOfCheckIns={numOfCheckIns!}
-            occupationPercent={occupationPercent}
-          />
-        )}
-      </div>
+      <Statistics
+        occupationPercent={occupationPercent}
+        statsLoading={loading}
+        numOfBookings={numOfBookings}
+        numOfCheckIns={numOfCheckIns}
+        sales={sales}
+      />
       <div className="space-y-7">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
-          <div className="hidden sm:block">
-            {loading ? (
-              <PieChartSkeleton />
-            ) : (
-              <DurationPieChart confirmedStays={confirmedStays!}>
-                <Legend
-                  verticalAlign="middle"
-                  width={130}
-                  align="right"
-                  iconType="circle"
-                  iconSize={10}
-                />
-              </DurationPieChart>
-            )}
-          </div>
-          <div className="block sm:hidden">
-            {loading ? (
-              <PieChartSkeleton />
-            ) : (
-              <DurationPieChart confirmedStays={stays!} />
-            )}
-          </div>
-          <TodayActivityCarousel />
+          <DurationChart stays={confirmedStays!} staysLoading={staysLoading} />
+          <TodayBookingCarousel />
         </div>
-        <h4 className="text-xl">نمودار فروش</h4>
-        {loading ? (
-          <SalesChartSkeleton />
-        ) : (
-          <SalesChart bookings={recentBooking!!} numOfDays={numOfDays} />
-        )}
+        <SalesChartContainer
+          loading={loading}
+          numOfDays={numOfDays}
+          recentBooking={recentBooking!}
+        />
       </div>
     </div>
   );

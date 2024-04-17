@@ -9,7 +9,7 @@ import AutoPlay from "embla-carousel-autoplay";
 import CarouselCard from "./CarouselCard";
 import NewBookingSkeleton from "./NewBookingSkeleton";
 
-const TodayActivityCarousel = () => {
+const TodayBookingCarousel = () => {
   const { data, isLoading } = useTodayActivity();
   const skeletons = [1, 2, 3, 4];
 
@@ -43,4 +43,4 @@ const TodayActivityCarousel = () => {
   );
 };
 
-export default TodayActivityCarousel;
+export default TodayBookingCarousel;
