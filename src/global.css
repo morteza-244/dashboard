@@ -92,6 +92,9 @@
   .pie-chart {
     @apply p-4 space-y-4 sm:shadow-md shadow-md bg-slate-100 dark:bg-gray-900 rounded-lg;
   }
+  .small-btn {
+    @apply h-8 rounded px-2 text-xs sm:text-sm sm:h-9 sm:px-2 sm:py-2;
+  }
 }
 
 @layer base {

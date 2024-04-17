@@ -38,18 +38,23 @@ const PaginateButton = ({
 
   return (
     <div className="flex flex-col sm:flex-row items-center gap-2 justify-end my-5">
-      <p>
-        صفحه {currentPage} از {pageCount}
+      <p className="text-sm mt-1">
+        صفحه {currentPage} از {pageCount || 0}
       </p>
       <div className="flex gap-2">
         <Button
+          className="small-btn"
           disabled={isPlaceholderData || currentPage === pageCount}
           onClick={nextPage}
         >
           <ChevronRight size={20} />
           صفحه بعدی
         </Button>
-        <Button disabled={currentPage === 1} onClick={prevPage}>
+        <Button
+          className="small-btn"
+          disabled={currentPage === 1}
+          onClick={prevPage}
+        >
           صفحه قبلی
           <ChevronLeft size={20} />
         </Button>
