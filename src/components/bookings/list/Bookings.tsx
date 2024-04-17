@@ -1,9 +1,13 @@
 import BookingOperations from "./BookingOperations";
 import BookingsTable from "./BookingsTable";
+import FilterDrawer from "./FilterDrawer";
 const Bookings = () => {
   return (
     <>
-      <BookingOperations />
+      <div className="hidden sm:block">
+        <BookingOperations />
+      </div>
+      <FilterDrawer />
       <BookingsTable />
     </>
   );

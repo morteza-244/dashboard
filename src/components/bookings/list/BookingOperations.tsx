@@ -4,14 +4,12 @@ import SortTypeSelector from "./SortTypeSelector";
 
 const BookingOperations = () => {
   return (
-    <div className="mb-7 flex gap-3 flex-wrap justify-between">
-      <div className="flex gap-3 flex-wrap">
+    <div className="flex mb-7 gap-5 sm:gap-3 flex-wrap justify-between">
+      <div className="flex gap-5 sm:gap-3 flex-wrap">
         <StatusSelector />
         <BookingSortSelector />
       </div>
-      <div>
-        <SortTypeSelector />
-      </div>
+      <SortTypeSelector />
     </div>
   );
 };
