@@ -25,7 +25,7 @@ const ModeToggle = () => {
           <Moon className="absolute h-[1.2rem] w-[1.2rem] rotate-90 scale-0 transition-all dark:rotate-0 dark:scale-100" />
         </Button>
       </DropdownMenuTrigger>
-      <DropdownMenuContent align="end">
+      <DropdownMenuContent align="end" className="ml-5 md:ml-0">
         {modes.map((mode) => (
           <DropdownMenuItem
             onClick={() => setTheme(mode.theme)}

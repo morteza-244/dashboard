@@ -14,7 +14,7 @@ const UserDropdownMenu = ({ fullName, avatar }: UserDropdownMenuProps) => {
 
   return (
     <Popover>
-      <PopoverTrigger asChild className="hidden sm:block">
+      <PopoverTrigger asChild className="hidden md:block">
         <Avatar className="cursor-pointer">
           <AvatarImage src={avatar} alt={`user-avatar ${fullName}`} />
           <AvatarFallback>{fullName.slice(0, 2).toUpperCase()}</AvatarFallback>
