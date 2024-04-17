@@ -7,7 +7,7 @@ export const SideBarLinksContainer = () => {
   const links: SideLinks[] = [
     { route: "/", label: "خانه", icon: <Home size={25} /> },
     { route: "/bookings", label: "رزرو ها", icon: <NotebookText size={25} /> },
-    { route: "/cabins", label: "کابین ها", icon: <Hotel size={25} /> },
+    { route: "/cabins", label: "اقامتگاه ها", icon: <Hotel size={25} /> },
     { route: "/users", label: "کاربران", icon: <Users size={25} /> },
     { route: "/settings", label: "تنظیمات", icon: <Settings size={25} /> },
   ];
