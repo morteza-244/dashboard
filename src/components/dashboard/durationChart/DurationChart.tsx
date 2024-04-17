@@ -28,6 +28,7 @@ const DurationChart = ({ stays, staysLoading }: DurationChartProps) => {
         )}
       </div>
       <div className="block sm:hidden pie-chart">
+      <h4 className="text-center sm:text-right">نمودار مدت زمان اقامت</h4>
         {staysLoading ? (
           <PieChartSkeleton />
         ) : (

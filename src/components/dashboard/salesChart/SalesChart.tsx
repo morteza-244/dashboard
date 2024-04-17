@@ -54,7 +54,7 @@ const SalesChart = ({ numOfDays, bookings }: SalesChartProps) => {
         };
 
   return (
-    <div style={{ direction: "ltr" }} className="overflow-x-auto dark:bg-gray-900 rounded-lg p-2 sm:p-4">
+    <div style={{ direction: "ltr" }} className="overflow-x-auto bg-slate-100 dark:bg-gray-900 rounded-lg p-2 sm:p-4">
       <ResponsiveContainer height={300} width={"100%"}>
         <AreaChart
           data={data}
