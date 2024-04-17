@@ -1,24 +1,22 @@
 import useGetCabins from "@/hooks/useGetCabins";
 import useRecentBooking from "@/hooks/useRecentBooking";
 import useRecentStays from "@/hooks/useRecentStays";
+import { Legend } from "recharts";
+import DurationPieChart from "./DurationPieChart";
 import LastDaySelector from "./LastDaySelector";
+import PieChartSkeleton from "./PieChartSkeleton";
 import SalesChart from "./SalesChart";
+import SalesChartSkeleton from "./SalesChartSkeleton";
 import StatisticsSkeleton from "./StatisticsSkeleton";
 import StatItems from "./StatItems";
 import StatsDrawer from "./StatsDrawer";
-import DurationPieChart from "./DurationPieChart";
-import { Legend } from "recharts";
-import PieChartSkeleton from "./PieChartSkeleton";
-import SalesChartSkeleton from "./SalesChartSkeleton";
 import TodayActivityCarousel from "./TodayActivityCarousel";
-import useTodayActivity from "@/hooks/useTodayActivity";
 
 const Dashboard = () => {
   const { recentBooking, recentBookingLoading, recentBookingError } =
     useRecentBooking();
   const { numOfDays, staysLoading, staysError, stays } = useRecentStays();
   const { data: cabins, isLoading, error } = useGetCabins();
-  const { data: todayBooking } = useTodayActivity();
 
   const confirmedStays = stays?.filter(
     (item) => item.status === "checked_in" || item.status === "checked_out"
@@ -95,7 +93,7 @@ const Dashboard = () => {
               <DurationPieChart confirmedStays={stays!} />
             )}
           </div>
-          <TodayActivityCarousel data={todayBooking!} />
+          <TodayActivityCarousel />
         </div>
         <h4 className="text-xl">نمودار فروش</h4>
         {loading ? (

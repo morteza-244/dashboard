@@ -1,14 +1,18 @@
-import { TTodayBooking } from "@/types";
 import {
   Carousel,
   CarouselContent,
   CarouselNext,
   CarouselPrevious,
 } from "@/components/ui/carousel";
-import CarouselCard from "./CarouselCard";
+import useTodayActivity from "@/hooks/useTodayActivity";
 import AutoPlay from "embla-carousel-autoplay";
+import CarouselCard from "./CarouselCard";
+import NewBookingSkeleton from "./NewBookingSkeleton";
 
-const TodayActivityCarousel = ({ data }: { data: TTodayBooking[] }) => {
+const TodayActivityCarousel = () => {
+  const { data, isLoading } = useTodayActivity();
+  const skeletons = [1, 2, 3, 4];
+
   return (
     <Carousel
       plugins={[
@@ -25,6 +29,8 @@ const TodayActivityCarousel = ({ data }: { data: TTodayBooking[] }) => {
     >
       <h4 className="text-center sm:text-right">رزرو های جدید</h4>
       <CarouselContent className="gap-5 py-2 mb-5">
+        {isLoading &&
+          skeletons.map((skeleton) => <NewBookingSkeleton key={skeleton} />)}
         {data?.map((item) => (
           <CarouselCard key={item.id} booking={item} />
         ))}
