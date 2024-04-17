@@ -2,7 +2,7 @@ import { updateCabin } from "@/services/apiCabins";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { toast } from "sonner";
 
-const useEditCabin = (id: number ) => {
+const useEditCabin = (id: number) => {
   const queryClient = useQueryClient();
   return useMutation({
     mutationFn: updateCabin,
@@ -13,10 +13,10 @@ const useEditCabin = (id: number ) => {
       queryClient.invalidateQueries({
         queryKey: ["cabin-detail", id],
       });
-      toast.success("Your cabin has been created successfully");
+      toast.success("اقامتگاه شما با موفقیت به روز شد");
     },
-    onError: (error) => {
-      toast.error(error.message);
+    onError: () => {
+      toast.error("مشکلی به وجود امده است, لطفا دوباره امتحان کنید");
     },
   });
 };

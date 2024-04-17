@@ -11,8 +11,8 @@ const useLogin = () => {
       toast.success("شما با موفقیت وارد حساب خود شدید");
       navigate("/", { replace: true });
     },
-    onError: (error) => {
-      toast.error(error.message);
+    onError: () => {
+      toast.error("مشکلی به وجود امده است, لطفا دوباره امتحان کنید");
     },
   });
 };

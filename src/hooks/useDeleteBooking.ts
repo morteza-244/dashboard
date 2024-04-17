@@ -13,10 +13,10 @@ const useDeleteBooking = () => {
         queryKey: ["bookings"],
       });
       navigate("/bookings");
-      toast.success("عملیات با موفقیت انجام شد");
+      toast.success("رزرو با موفقیت حذف شد");
     },
-    onError: (error) => {
-      toast.error(error.message);
+    onError: () => {
+      toast.error("مشکلی به وجود امده است, لطفا دوباره امتحان کنید");
     },
   });
 };

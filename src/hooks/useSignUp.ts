@@ -6,10 +6,10 @@ const useSignUp = () => {
   return useMutation({
     mutationFn: signUp,
     onSuccess: () => {
-      toast.success("عملیات با موفقیت انجام شد");
+      toast.success("عملیات با موفقیت انجام شد. لطفا ایمیل خود را چک کنید");
     },
     onError: () => {
-      toast.error("مشکلی بوجود آمده, لطفا دوباره امتحان کنید");
+      toast.error("مشکلی بوجود آمده, لطفا چند دقیقه بعد امتحان کنید");
     },
   });
 };

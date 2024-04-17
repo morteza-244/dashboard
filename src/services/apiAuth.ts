@@ -7,7 +7,7 @@ export const loginApi = async (obj: TUserLogin) => {
     password: obj.password,
   });
 
-  if (error) throw new Error("ایمیل یا رمز عبور ارائه شده شتباه است");
+  if (error) throw new Error("ایمیل یا رمز عبور وارد شده اشتباه است");
   return data;
 };
 

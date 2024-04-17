@@ -19,8 +19,8 @@ const useCheckInBooking = () => {
       toast.success(`رزرو #${booking.id} با موفقیت تایید شد.`);
       navigate("/bookings");
     },
-    onError: (error) => {
-      toast.error(error.message);
+    onError: () => {
+      toast.error("مشکلی به وجود امده است, لطفا دوباره امتحان کنید");
     },
   });
 };

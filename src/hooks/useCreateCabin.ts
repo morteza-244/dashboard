@@ -5,7 +5,7 @@ import { UseFormReset } from "react-hook-form";
 import { toast } from "sonner";
 
 interface Props {
-    resetFileUrl: (value: string) => void;
+  resetFileUrl: (value: string) => void;
   reset: UseFormReset<TCabinFormData>;
 }
 
@@ -18,12 +18,12 @@ const useCreateCabin = ({ reset, resetFileUrl }: Props) => {
       queryClient.invalidateQueries({
         queryKey: ["cabins"],
       });
-      toast.success("Your cabin has been created successfully");
+      toast.success("اقامتگاه شما با موفقیت ایجاد شد");
       resetFileUrl("");
       reset();
     },
-    onError: (error) => {
-      toast.error(error.message);
+    onError: () => {
+      toast.error("مشکلی به وجود امده است, لطفا دوباره امتحان کنید");
     },
   });
 };

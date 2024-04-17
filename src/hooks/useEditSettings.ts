@@ -10,10 +10,10 @@ const useEditSettings = () => {
       queryClient.invalidateQueries({
         queryKey: ["settings"],
       });
-      toast.success("Your application settings have been updated");
+      toast.success("تنظیمات برنامه شما با موفقیت به روز شد");
     },
-    onError: (error) => {
-      toast.error(error.message);
+    onError: () => {
+      toast.error("مشکلی به وجود امده است, لطفا دوباره امتحان کنید");
     },
   });
 };

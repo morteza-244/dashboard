@@ -10,8 +10,8 @@ const useCheckOutBooking = () => {
       queryClient.invalidateQueries({ exact: true });
       toast.success(`رزرو #${booking.id} با موفقیت تسویه شد.`);
     },
-    onError: (error) => {
-      toast.error(error.message);
+    onError: () => {
+      toast.error("مشکلی به وجود امده است, لطفا دوباره امتحان کنید");
     },
   });
 };
