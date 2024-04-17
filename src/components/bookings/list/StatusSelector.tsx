@@ -15,9 +15,9 @@ const StatusSelector = () => {
   const setStatus = useBookingStore((s) => s.setStatus);
   const status: { value: string; label: string }[] = [
     { value: "all", label: "تمامی رزرو ها" },
-    { value: "unconfirmed", label: "پرداخت نشده" },
-    { value: "checked_in", label: "در حال پرداخت" },
-    { value: "checked_out", label: "پرداخت شده" },
+    { value: "unconfirmed", label: "تایید نشده" },
+    { value: "checked_in", label: "تایید شده" },
+    { value: "checked_out", label: "تسویه شده" },
   ];
   const currentValue = status.find(
     (item) => item.value === bookingStatus
