@@ -18,11 +18,11 @@ const BookingStatusBadge = ({ statusValue }: BookingStatusBadgeProps) => {
   };
 
   return (
-    <span
-      className={`inline-flex items-center px-3 py-1 rounded text-xs font-medium ${status[statusValue].color}`}
+    <p
+      className={`w-16 flex items-center justify-center py-1 rounded text-xs font-medium ${status[statusValue].color}`}
     >
       {status[statusValue].label}
-    </span>
+    </p>
   );
 };
 
